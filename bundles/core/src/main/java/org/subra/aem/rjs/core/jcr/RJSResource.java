@@ -9,6 +9,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.subra.aem.rjs.core.commons.helpers.CommonHelper;
 import org.subra.aem.rjs.core.jcr.utils.RJSResourceUtils;
 
+/**
+ * @author Raghava Joijode
+ */
 public class RJSResource {
 
 	private String title;
