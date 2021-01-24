@@ -5,7 +5,7 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.commons.exceptions.RJSRuntimeException;
+import org.subra.commons.exceptions.RJSRuntimeException;
 import org.subra.aem.rjs.core.ehcache.helpers.CacheHelper;
 
 import java.util.ArrayList;

@@ -16,9 +16,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.commons.constants.HttpType;
 import org.subra.aem.rjs.core.commons.constants.UserMapperService;
 import org.subra.aem.rjs.core.xtjapi.services.ExcelToJsonService;
+import org.subra.commons.constants.HttpType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

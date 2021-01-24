@@ -27,7 +27,7 @@ public class DeleteIndexesFromSolr extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = LoggerFactory.getLogger(DeleteIndexesFromSolr.class);
     @Reference
-    SolrServerConfiguration solrConfigurationService;
+    transient SolrServerConfiguration solrConfigurationService;
 
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response)

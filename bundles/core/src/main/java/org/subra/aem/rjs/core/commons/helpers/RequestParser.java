@@ -3,7 +3,8 @@ package org.subra.aem.rjs.core.commons.helpers;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.subra.aem.rjs.core.commons.constants.HttpType;
+import org.subra.commons.constants.HttpType;
+import org.subra.commons.helpers.CommonHelper;
 
 import java.io.IOException;
 import java.util.Arrays;

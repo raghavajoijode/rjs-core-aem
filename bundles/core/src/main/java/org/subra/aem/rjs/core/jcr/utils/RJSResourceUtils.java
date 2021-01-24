@@ -14,19 +14,19 @@ import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.apache.sling.models.factory.ModelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.commons.constants.HttpType;
 import org.subra.aem.rjs.core.commons.constants.UserMapperService;
-import org.subra.aem.rjs.core.commons.exceptions.RJSRuntimeException;
-import org.subra.aem.rjs.core.commons.helpers.CommonHelper;
-import org.subra.aem.rjs.core.commons.utils.RJSDateTimeUtils;
-import org.subra.aem.rjs.core.commons.utils.RJSStringUtils;
 import org.subra.aem.rjs.core.jcr.RJSResource;
 import org.subra.aem.rjs.core.jcr.constants.JcrFileNames;
 import org.subra.aem.rjs.core.jcr.constants.JcrPrimaryType;
 import org.subra.aem.rjs.core.jcr.constants.JcrProperties;
+import org.subra.commons.constants.HttpType;
+import org.subra.commons.exceptions.RJSRuntimeException;
+import org.subra.commons.helpers.CommonHelper;
+import org.subra.commons.utils.RJSDateTimeUtils;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -78,7 +78,7 @@ public class RJSResourceUtils {
 
     public static InputStream getFileAsIS(final Resource resource) throws RepositoryException {
         final Node node = adoptToOrThrow(resource, Node.class);
-        return node.getProperty(JcrConstants.JCR_CONTENT + RJSStringUtils.SLASH + JcrConstants.JCR_DATA).getBinary().getStream();
+        return node.getProperty(JcrConstants.JCR_CONTENT + CommonHelper.SLASH + JcrConstants.JCR_DATA).getBinary().getStream();
     }
 
     public static String getFileJCRData(final Resource resource) {
@@ -203,9 +203,16 @@ public class RJSResourceUtils {
         return getResourceResolverFromRequest(request).adaptTo(clazz);
     }
 
-    public static ResourceResolver getAdminServiceResourceResolver(
-            final ResourceResolverFactory resourceResolverFactory) throws LoginException {
+    public static ResourceResolver getAdminServiceResourceResolver(final ResourceResolverFactory resourceResolverFactory) throws LoginException {
         return resourceResolverFactory.getServiceResourceResolver(AUTH_INFO);
+    }
+
+    public static ResourceResolver getServiceResourceResolver(final ResourceResolverFactory resourceResolverFactory, UserMapperService userMapperService) throws LoginException {
+        return resourceResolverFactory.getServiceResourceResolver(getAuthInfo(userMapperService));
+    }
+
+    public static Session getAdminSession(final ResourceResolverFactory resourceResolverFactory) throws LoginException {
+        return resourceResolverFactory.getServiceResourceResolver(AUTH_INFO).adaptTo(Session.class);
     }
 
     public static Resource getResource(final SlingHttpServletRequest request, final String path) {
@@ -213,7 +220,7 @@ public class RJSResourceUtils {
     }
 
     public static Resource getResource(final ResourceResolver resolver, final String path) {
-        final String resourcePath = path.startsWith(RJSStringUtils.SLASH) ? path : RJSStringUtils.SLASH + path;
+        final String resourcePath = path.startsWith(CommonHelper.SLASH) ? path : CommonHelper.SLASH + path;
         return resolver.getResource(resourcePath);
     }
 

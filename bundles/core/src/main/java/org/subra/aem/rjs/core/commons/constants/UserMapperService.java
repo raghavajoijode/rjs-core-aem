@@ -5,12 +5,12 @@ package org.subra.aem.rjs.core.commons.constants;
  */
 public enum UserMapperService {
 
-    EMAIL_SERVICE("subra-email-service"),
-    ADMIN_SERVICE("subra-admin-service");
+    EMAIL_SERVICE("rjs-email-service"),
+    ADMIN_SERVICE("rjs-admin-service");
 
-    private String value;
+    private final String value;
 
-    private UserMapperService(String value) {
+    UserMapperService(String value) {
         this.value = value;
     }
 

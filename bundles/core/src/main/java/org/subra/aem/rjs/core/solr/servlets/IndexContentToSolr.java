@@ -30,10 +30,10 @@ public class IndexContentToSolr extends SlingAllMethodsServlet {
     private static final Logger LOG = LoggerFactory.getLogger(IndexContentToSolr.class);
 
     @Reference
-    SolrServerConfiguration solrConfigurationService;
+    transient SolrServerConfiguration solrConfigurationService;
 
     @Reference
-    SolrSearchService solrSearchService;
+    transient SolrSearchService solrSearchService;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {

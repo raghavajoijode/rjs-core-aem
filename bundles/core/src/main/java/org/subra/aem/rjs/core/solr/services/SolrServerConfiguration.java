@@ -19,7 +19,7 @@ public interface SolrServerConfiguration {
     String getContentPagePath();
 
     @ObjectClassDefinition(name = "AEM Solr Search - Solr Configuration Service", description = "Service Configuration")
-    public @interface Config {
+    @interface Config {
 
         @AttributeDefinition(name = "Protocol", defaultValue = "http", description = "Configuration value")
         String protocolValue();

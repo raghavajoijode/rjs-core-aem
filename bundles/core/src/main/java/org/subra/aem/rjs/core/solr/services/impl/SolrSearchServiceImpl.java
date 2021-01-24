@@ -6,9 +6,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.jcr.api.SlingRepository;
+import org.apache.sling.api.resource.*;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.common.SolrInputDocument;
@@ -19,6 +17,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.subra.aem.rjs.core.jcr.utils.RJSResourceUtils;
 import org.subra.aem.rjs.core.solr.services.SolrSearchService;
 import org.subra.aem.rjs.core.solr.utils.SolrUtils;
 
@@ -41,7 +40,7 @@ public class SolrSearchServiceImpl implements SolrSearchService {
     private QueryBuilder queryBuilder;
 
     @Reference
-    private SlingRepository repository;
+    private ResourceResolverFactory resourceResolverFactory;
 
     @Override
     public JSONArray crawlContent(String resourcePath, String resourceType) {
@@ -50,24 +49,15 @@ public class SolrSearchServiceImpl implements SolrSearchService {
         params.put("type", resourceType);
         params.put("p.offset", "0");
         params.put("p.limit", "10000");
-        Session session = null;
-        try {
-            session = repository.loginAdministrative(null);
+        try (ResourceResolver resourceResolver = RJSResourceUtils.getAdminServiceResourceResolver(resourceResolverFactory)) {
+            Session session = resourceResolver.adaptTo(Session.class);
             Query query = queryBuilder.createQuery(PredicateGroup.create(params), session);
-
             SearchResult searchResults = query.getResult();
-
             LOG.info("Found '{}' matches for query", searchResults.getTotalMatches());
-            if (resourceType.equalsIgnoreCase("cq:PageContent")) {
+            if (resourceType.equalsIgnoreCase("cq:PageContent"))
                 return createPageMetadataArray(searchResults);
-            }
-
-        } catch (RepositoryException e) {
+        } catch (RepositoryException | LoginException e) {
             LOG.error("Exception due to", e);
-        } finally {
-            if (session != null && session.isLive()) {
-                session.logout();
-            }
         }
         return null;
     }
@@ -95,9 +85,8 @@ public class SolrSearchServiceImpl implements SolrSearchService {
         propertiesMap.put("url", pageContent.getParent().getPath() + ".html");
         ValueMap properties = pageContent.adaptTo(ValueMap.class);
         String pageTitle = properties.get("jcr:title", String.class);
-        if (StringUtils.isEmpty(pageTitle)) {
+        if (StringUtils.isEmpty(pageTitle))
             pageTitle = pageContent.getParent().getName();
-        }
         propertiesMap.put(SolrUtils.TITLE, pageTitle);
         propertiesMap.put(SolrUtils.DESCRIPTION, SolrUtils.checkNull(properties.get("jcr:description", String.class)));
         propertiesMap.put("publishDate", SolrUtils.checkNull(properties.get("publishdate", String.class)));

@@ -14,13 +14,12 @@ import java.util.Optional;
  */
 public final class SolrUtils {
 
-    private SolrUtils() {
-    }
-
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String LAST_MODIFIED = "lastModified";
     public static final String CONTENT_TYPE = "contentType";
+    private SolrUtils() {
+    }
 
     /**
      * This method is used to extract the tags from the content page

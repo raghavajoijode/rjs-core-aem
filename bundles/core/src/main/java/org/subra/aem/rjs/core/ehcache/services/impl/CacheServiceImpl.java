@@ -10,9 +10,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.component.propertytypes.ServiceDescription;
-import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
-import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.subra.aem.rjs.core.commons.constants.UserMapperService;
@@ -31,11 +29,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component(service = CacheService.class, immediate = true)
 @ServiceDescription("CacheService Service")
-@Designate(ocd = CacheServiceImpl.Config.class)
+@Designate(ocd = CacheService.Config.class)
 public class CacheServiceImpl implements CacheService {
 
     public static final String CLASS_COUNTRY_FORM = "%s:%s";
-    public static final String DEFAULT_CACHE_CONFIG = "/etc/subra/core/cache/ehcache.xml";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CacheServiceImpl.class);
     private static final Map<String, Object> AUTH_USER_INFO;
@@ -45,12 +42,10 @@ public class CacheServiceImpl implements CacheService {
         AUTH_USER_INFO.put(ResourceResolverFactory.SUBSERVICE, UserMapperService.ADMIN_SERVICE.value());
     }
 
+    private final Map<String, CacheHelper<?>> caches = new ConcurrentHashMap<>();
     protected CacheManager cacheManager;
-
     @Reference
     private ResourceResolverFactory resolverFactory;
-
-    private final Map<String, CacheHelper<?>> caches = new ConcurrentHashMap<>();
 
     public CacheServiceImpl() throws IOException {
         super();
@@ -111,10 +106,9 @@ public class CacheServiceImpl implements CacheService {
     }
 
     public void clearByClassName(final String className) {
-        for (String cacheName : caches.keySet()) {
-            if (StringUtils.startsWith(cacheName, className)) {
-                caches.get(cacheName).clear();
-            }
+        for (Map.Entry<String, CacheHelper<?>> cache : caches.entrySet()) {
+            if (StringUtils.startsWith(cache.getKey(), className))
+                cache.getValue().clear();
         }
     }
 
@@ -139,9 +133,4 @@ public class CacheServiceImpl implements CacheService {
         return String.format(CLASS_COUNTRY_FORM, className, countryCode);
     }
 
-    @ObjectClassDefinition(name = "Subra EHCache Service", description = "Service for ehcache configuration")
-    public @interface Config {
-        @AttributeDefinition(name = "cache.config", description = "Subra Cache ehcache.xml path")
-        String cacheConfig() default DEFAULT_CACHE_CONFIG;
-    }
 }
