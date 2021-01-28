@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-	
-	<parent>
+
+    <parent>
         <groupId>org.subra.aem</groupId>
         <artifactId>rjs-core.parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.2-SNAPSHOT</version>
         <relativePath>../../parent/pom.xml</relativePath>
     </parent>
-	
+
     <artifactId>rjs-core.core</artifactId>
     <name>RJS Core - Core</name>
     <description>Core bundle for RJS Core</description>
-	<!-- AEM VERSION - 6.5.0 -->
+    <!-- AEM VERSION - 6.5.0 -->
     <build>
         <plugins>
             <plugin>
@@ -198,23 +198,41 @@ Import-Package: javax.annotation;version=0.0.0,*
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
-            <groupId>org.apache.solr</groupId>
-            <artifactId>solr-solrj</artifactId>
-            <version>8.5.1</version>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.solr-solrj</artifactId>
         </dependency>
-
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>2.10.6</version>
         </dependency>
-
         <dependency>
             <groupId>org.subra.commons</groupId>
             <artifactId>rjs-commons</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>buildFor64</id>
+            <dependencies>
+                <!-- 6.4 Packages -->
+                <dependency>
+                    <groupId>javax.mail</groupId>
+                    <artifactId>mail</artifactId>
+                    <version>1.4.7</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.mongodb</groupId>
+                    <artifactId>mongo-java-driver</artifactId>
+                    <version>3.4.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.inject</groupId>
+                    <artifactId>javax.inject</artifactId>
+                    <version>1</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>

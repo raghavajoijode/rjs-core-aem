@@ -1,6 +1,5 @@
 package org.subra.aem.rjs.core.component.models.impl;
 
-import com.adobe.cq.wcm.core.components.models.Title;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.designer.Style;
@@ -82,7 +81,7 @@ public class HeadingImpl implements Heading {
 
         // Checks if link is disabled
         if (currentStyle != null) {
-            linkDisabled = currentStyle.get(Title.PN_TITLE_LINK_DISABLED, linkDisabled);
+            linkDisabled = currentStyle.get("linkDisabled", linkDisabled);
         }
     }
 

@@ -8,9 +8,9 @@
     <!-- ====================================================================== -->
     <parent>
         <groupId>org.subra.aem</groupId>
-        <artifactId>rjs-core</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <artifactId>rjs-core.parent</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <!-- ====================================================================== -->
@@ -53,6 +53,28 @@
                             <artifactId>rjs-core.core</artifactId>
                             <target>/apps/rjs-core-packages/application/install</target>
                         </embedded>
+
+                        <embedded>
+                            <groupId>org.subra.commons</groupId>
+                            <artifactId>rjs-commons</artifactId>
+                            <target>/apps/rjs-core-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>net.sf.ehcache</groupId>
+                            <artifactId>ehcache</artifactId>
+                            <target>/apps/rjs-core-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>org.apache.servicemix.bundles</groupId>
+                            <artifactId>org.apache.servicemix.bundles.solr-solrj</artifactId>
+                            <target>/apps/rjs-core-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>org.apache.sling</groupId>
+                            <artifactId>org.apache.sling.dynamic-include</artifactId>
+                            <target>/apps/rjs-core-vendor-packages/application/install</target>
+                        </embedded>
+
                         <embedded>
                             <groupId>org.subra.aem</groupId>
                             <artifactId>rjs-core.ui.content</artifactId>
@@ -221,6 +243,25 @@
             <artifactId>rjs-core.ui.config</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
+        </dependency>
+
+        <!-- External Dependencies -->
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.solr-solrj</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.subra.commons</groupId>
+            <artifactId>rjs-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.dynamic-include</artifactId>
+            <version>3.1.6</version>
         </dependency>
 
         <!-- SPA Project Core (includes hierarchy page) -->
