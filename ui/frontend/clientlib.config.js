@@ -21,7 +21,7 @@ const BUILD_DIR = path.join(__dirname, 'build');
 const CLIENTLIB_DIR = path.join(
   __dirname,
   '..',
-  'ui.apps',
+  'apps',
   'src',
   'main',
   'content',
