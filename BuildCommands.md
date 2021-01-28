@@ -9,3 +9,4 @@ Use `versions:set` from the versions-maven plugin:
 It will adjust all pom versions, parent versions and dependency versions in a multi-module project.
 
 If you made a mistake, do `mvn versions:revert` afterwards, or `mvn versions:commit -DprocessAllModules`
+
