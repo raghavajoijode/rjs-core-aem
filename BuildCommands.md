@@ -10,3 +10,7 @@ It will adjust all pom versions, parent versions and dependency versions in a mu
 
 If you made a mistake, do `mvn versions:revert` afterwards, or `mvn versions:commit -DprocessAllModules`
 
+## Building and Deploying 
+Use profile `buildFor64` to build project deployable in 6.4 Instance.
+
+`mvn clean install -PbuildFor64 -PautoInstallSinglePackage`
