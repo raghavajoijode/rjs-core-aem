@@ -11,6 +11,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.adapter.Adaptable;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
+import org.apache.sling.jcr.api.SlingRepository;
 import org.apache.sling.models.factory.ModelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -211,8 +212,8 @@ public class RJSResourceUtils {
         return resourceResolverFactory.getServiceResourceResolver(getAuthInfo(userMapperService));
     }
 
-    public static Session getAdminSession(final ResourceResolverFactory resourceResolverFactory) throws LoginException {
-        return resourceResolverFactory.getServiceResourceResolver(AUTH_INFO).adaptTo(Session.class);
+    public static Session getAdminSession(final SlingRepository slingRepository) throws RepositoryException, LoginException {
+        return slingRepository.loginService(UserMapperService.ADMIN_SERVICE.value(), null);
     }
 
     public static Resource getResource(final SlingHttpServletRequest request, final String path) {
@@ -261,16 +262,20 @@ public class RJSResourceUtils {
         return Optional.of(base).map(r -> r.getChild(CommonHelper.createNameFromTitle(childTitle))).orElse(null);
     }
 
-    public static Object addOrUpdateProperty(Resource resource, JcrProperties property, Object value) {
+    public static Object addOrUpdateProperty(Resource resource, String property, Object value) {
         try {
             ModifiableValueMap mvp = resource.adaptTo(ModifiableValueMap.class);
-            mvp.put(property.property(), value);
+            mvp.put(property, value);
             resource.getResourceResolver().commit();
             return value;
         } catch (PersistenceException | NullPointerException e) {
             LOGGER.error("Error creating/updating property", e);
         }
         return null;
+    }
+
+    public static Object addOrUpdateProperty(Resource resource, JcrProperties property, Object value) {
+        return addOrUpdateProperty(resource, property.property(), value);
     }
 
     public static Object deleteProperty(Resource resource, JcrProperties property) {
@@ -300,7 +305,7 @@ public class RJSResourceUtils {
         return StringUtils.isEmpty(vanityURL) ? (request.getContextPath() + page.getPath() + ".html") : (request.getContextPath() + vanityURL);
     }
 
-    public static void updateRJSResource(final Resource resource, final RJSResource rjsResource) {
+    private static void updateRJSResource(final RJSResource rjsResource, final Resource resource) {
         rjsResource.setResource(resource);
         rjsResource.setName(resource.getName());
         rjsResource.setPath(resource.getPath());
@@ -317,6 +322,10 @@ public class RJSResourceUtils {
         rjsResource.setUpdatedBy(getPropertyValue(resource, PN_UPDATED_BY, EMPTY));
         rjsResource.setUpdatedOn(getPropertyValue(resource, PN_UPDATED_ON, null));
         rjsResource.setCreatedBy(getPropertyValue(resource, PN_CREATED_BY, EMPTY));
+    }
+
+    public static void updateRJSResource(final Resource resource, final RJSResource rjsResource) {
+        if (resource != null) updateRJSResource(rjsResource, resource);
     }
 
 }

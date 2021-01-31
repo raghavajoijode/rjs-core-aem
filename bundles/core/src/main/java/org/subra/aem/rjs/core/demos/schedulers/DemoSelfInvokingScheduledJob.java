@@ -8,6 +8,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// White board pattern
 @Designate(ocd = DemoSelfInvokingScheduledJob.Config.class)
 @Component(service = Runnable.class)
 public class DemoSelfInvokingScheduledJob implements Runnable {
@@ -21,20 +22,24 @@ public class DemoSelfInvokingScheduledJob implements Runnable {
         @AttributeDefinition(name = "Concurrent task", description = "Whether or not to schedule this task concurrently")
         boolean scheduler_concurrent() default false;
 
+        @AttributeDefinition(name = "Some Property", description = "Whether or not to schedule this task concurrently")
+        String myProperty() default "test";
+
     }
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
+    private String prop;
 
     @Override
     public void run() {
-        logger.info("Will Do Some task as scheduled...");
+        log.info("\n\nWill Do Some task as scheduled... {}\n\n", prop);
     }
 
     @Activate
     protected void activate(final Config config) {
-        final String v ="Raghava";
-        final String v2 ="Raghava";
-        logger.debug("{}} activated with config {} *** Hash {} ____ Stringggg {}", getClass(), config, v.hashCode(), v2.hashCode());
+        log.info("{} activated with config {} ", getClass(), config);
+        prop = config.myProperty();
     }
 
 }

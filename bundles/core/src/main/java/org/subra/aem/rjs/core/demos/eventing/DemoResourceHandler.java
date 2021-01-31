@@ -1,4 +1,4 @@
-package org.subra.aem.rjs.core.samples.listeners;
+package org.subra.aem.rjs.core.demos.eventing;
 
 import org.apache.sling.api.SlingConstants;
 import org.osgi.framework.Constants;
@@ -10,13 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Component(service = EventHandler.class,
-           immediate = true,
            enabled = false,
            property = {
                    Constants.SERVICE_DESCRIPTION + "=Demo to listen on changes in the resource tree",
                    EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/*"
            })
-public class SimpleResourceHandler implements EventHandler {
+public class DemoResourceHandler implements EventHandler {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

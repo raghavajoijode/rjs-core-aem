@@ -30,7 +30,7 @@ public interface MailerGatewayService {
         String smtp_user() default "noreply.subra";
 
         @AttributeDefinition(name = "SMTP Password")
-        String smtp_password() default "mrtfolqyvzzvmdzy";
+        String smtp_password() default "vexbdwpuguhmdkvy";
 
         @AttributeDefinition(name = "SMTP Enable SSL")
         boolean smtp_ssl() default true;
@@ -42,7 +42,7 @@ public interface MailerGatewayService {
         String smtp_from_address() default "noreply.subra@gmail.com";
 
         @AttributeDefinition(name = "Default Sender Name")
-        String smtp_from_name() default "Subra Technologies Group";
+        String smtp_from_name() default "RJS Technologies Group";
 
         @AttributeDefinition(name = "Connect With...", type = AttributeType.STRING)
         EmailSenderType connect_with() default EmailSenderType.NOREPLY;
