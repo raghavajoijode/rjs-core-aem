@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Designate(ocd = SimpleScheduledTask.Config.class)
-@Component(service = Runnable.class)
+@Component(service = Runnable.class, enabled = false)
 public class SimpleScheduledTask implements Runnable {
 
     @ObjectClassDefinition(name = "A scheduled task", description = "Simple demo for cron-job like task with properties")

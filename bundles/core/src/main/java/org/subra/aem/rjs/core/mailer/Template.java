@@ -23,6 +23,12 @@ public class Template extends RJSResource {
         setId(MailerHelper.getTemplateId(this));
     }
 
+    public Template(String a) {
+        super(null);
+        this.message = a;
+        setId(String.valueOf(a.hashCode()));
+    }
+
     public boolean isDraft() {
         return isDraft;
     }

@@ -90,7 +90,7 @@ public class MailerHelper {
     }
 
     public static Class<? extends Email> getMailType(String templatePath, boolean hasAttachments) {
-        return templatePath.endsWith(".html") || hasAttachments ? HtmlEmail.class : SimpleEmail.class;
+        return (templatePath != null && templatePath.endsWith(".html")) || hasAttachments ? HtmlEmail.class : SimpleEmail.class;
     }
 
     public static Email createEmail(final String content, Map<String, String> emailParams,
@@ -138,6 +138,8 @@ public class MailerHelper {
         for (final InternetAddress address : addresses) {
             try {
                 boolean hasAttachments = attachments != null && attachments.size() > 0;
+                LOGGER.info("TTTTTTT {}", template);
+                LOGGER.info("TTTTTTT PATH {}", template.getPath());
                 Email email = createEmail(content, emailParams, getMailType(template.getPath(), hasAttachments));
                 email.setTo(Collections.singleton(address));
                 if (hasAttachments) {
@@ -151,7 +153,7 @@ public class MailerHelper {
                 LOGGER.error("Error sending email to [ {} ]", address, e);
             }
         }
-        updateRecord(template, transactionId, content, emailParams, status);
+        //updateRecord(template, transactionId, content, emailParams, status);
         response.put("Status", status ? "SUCCESS" : "FAILURE");
         response.put("failureList", CollectionUtils.emptyIfNull(failureList).stream().map(InternetAddress::toString)
                 .collect(Collectors.toList()));
