@@ -8,7 +8,6 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.demos.eventing.DemoListener;
 
 // Using Scheduler api
 @Designate(ocd = DemoScheduler.Config.class)
