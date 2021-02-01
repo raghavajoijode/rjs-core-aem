@@ -39,7 +39,7 @@ public class DemoResourceChangeListener implements ResourceChangeListener {
             Map<String, Object> jobProperties = new HashMap<>();
             jobProperties.put("path", change.getPath());
             jobProperties.put("type", change.getType().name());
-            jobProperties.put("sendEmail", "true");
+            jobProperties.put("sendEmail", "false");
             Job j = jobManager.addJob(DemoJobConsumer.TOPIC, jobProperties);
             log.info("Job triggered .... status -> {}", j.getJobState());
         }

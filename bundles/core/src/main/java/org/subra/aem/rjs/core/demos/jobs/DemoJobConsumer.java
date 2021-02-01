@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.subra.aem.rjs.core.mailer.Template;
 import org.subra.aem.rjs.core.mailer.services.MailerService;
 import org.subra.aem.rjs.core.mailer.utils.MailerUtils;
-import org.subra.commons.constants.HttpType;
-import org.subra.commons.helpers.CommonHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,10 +41,11 @@ public class DemoJobConsumer implements JobConsumer {
     public JobResult process(Job job) {
         try {
             log.info("Processing the JOB ******* DemoJobConsumer");
-            final String message = String.format("The resource %s was %s", job.getProperty("path"), job.getProperty("type"));
+            final String message = String.format("The resource %s was %s", String.valueOf(job.getProperty("path")), job.getProperty("type"));
             log.info(message);
             // TODO : Write your business logic here . Any properties you need to execute
             if (BooleanUtils.toBoolean((String) job.getProperty("sendEmail"))) {
+                log.info("Sending email...");
                 Map<String, Object> response = senEmail(message);
                 if (!StringUtils.equalsAnyIgnoreCase((String) response.get("Status"), "SUCCESS"))
                     return JobResult.FAILED;

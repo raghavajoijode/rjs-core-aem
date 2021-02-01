@@ -9,7 +9,6 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.demos.schedulers.DemoTask;
 
 /**
  * A JobConsumer Service implementation to demonstrate how to create a
@@ -25,7 +24,7 @@ import org.subra.aem.rjs.core.demos.schedulers.DemoTask;
         })
 public class DemoJobConsumerNew implements JobConsumer {
 
-    public static final String TOPIC = "demo/self/scheduled/job";
+    public static final String TOPIC = "demo/test/scheduled/job";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private String myParameter;

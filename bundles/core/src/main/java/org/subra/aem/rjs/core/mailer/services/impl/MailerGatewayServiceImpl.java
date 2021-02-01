@@ -118,9 +118,8 @@ public class MailerGatewayServiceImpl implements MailerGatewayService {
 
     @Override
     public boolean send(Email email) throws EmailException {
-        String messageId = null;
         createConnection(email);
-        messageId = email.send();
+        String messageId = email.send();
         LOGGER.trace("Sent email, transaction id - {}", messageId);
         return StringUtils.isNotBlank(messageId);
     }

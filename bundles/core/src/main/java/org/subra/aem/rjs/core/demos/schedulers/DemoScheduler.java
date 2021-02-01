@@ -8,6 +8,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.subra.aem.rjs.core.demos.eventing.DemoListener;
 
 // Using Scheduler api
 @Designate(ocd = DemoScheduler.Config.class)
@@ -26,7 +27,7 @@ public class DemoScheduler {
         boolean scheduler_enabled() default true;
 
         @AttributeDefinition(name = "Cron-job expression", description = "Default value '0 0/2 * ? * * *' runs at 0th second in every 2 minutes")
-        String scheduler_expression() default "0 0/2 * ? * * *";
+        String my_cron_expression() default "0 0/2 * ? * * *";
 
         @AttributeDefinition(name = "Cron-job expression", description = "Default value '0 0/2 * ? * * *' runs at 0th second in every 2 minutes")
         String scheduler_name() default "Demo Scheduler";
@@ -62,7 +63,7 @@ public class DemoScheduler {
             Date date = Date.from(zdt.toInstant());*/
 
             // Create a schedule options to schedule the job based on the expression.
-            ScheduleOptions cronScheduleOptions = scheduler.EXPR(config.scheduler_expression());
+            ScheduleOptions cronScheduleOptions = scheduler.EXPR(config.my_cron_expression());
             cronScheduleOptions.name(config.scheduler_name());
             cronScheduleOptions.canRunConcurrently(false);
             boolean status = scheduler.schedule(task, cronScheduleOptions);

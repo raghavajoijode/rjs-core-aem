@@ -1,7 +1,8 @@
 package org.subra.aem.rjs.core.demos.schedulers;
 
-import org.apache.sling.event.jobs.JobBuilder.ScheduleBuilder;
+import org.apache.sling.event.jobs.JobBuilder;
 import org.apache.sling.event.jobs.JobManager;
+import org.apache.sling.event.jobs.ScheduledJobInfo;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -21,8 +22,7 @@ import org.subra.aem.rjs.core.demos.jobs.DemoJobConsumerNew;
 public class DemoJobBuilderScheduler {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-
-    private ScheduleBuilder scheduleBuilder;
+    private ScheduledJobInfo scheduledJobInfo;
 
     @Reference
     private JobManager jobManager;
@@ -36,16 +36,16 @@ public class DemoJobBuilderScheduler {
     @Deactivate
     protected void deactivate() {
         log.info("Activate Method of DemoJobBuilderScheduler");
-        if (scheduleBuilder != null) scheduleBuilder.suspend();
+        if (scheduledJobInfo != null) scheduledJobInfo.unschedule();
     }
 
     public void startScheduledJob() {
-        scheduleBuilder = jobManager.createJob(DemoJobConsumerNew.TOPIC).schedule();
+        JobBuilder.ScheduleBuilder scheduleBuilder = jobManager.createJob(DemoJobConsumerNew.TOPIC).schedule();
         scheduleBuilder.cron("0 0/2 * ? * * *");
         log.info("DemoJobBuilderScheduler startScheduledJob");
-        if (scheduleBuilder.add() == null) {
+        scheduledJobInfo = scheduleBuilder.add();
+        if (scheduledJobInfo == null) {
             log.info("DemoJobConsumerNew Scheduled Failed");
-            // something went wrong here, use scheduleBuilder.add(List<String>) instead to get further information about the error
         } else {
             log.info("DemoJobConsumerNew Scheduled");
         }
