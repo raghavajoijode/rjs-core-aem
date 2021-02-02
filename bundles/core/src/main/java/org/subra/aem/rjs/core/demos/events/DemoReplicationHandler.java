@@ -1,4 +1,4 @@
-package org.subra.aem.rjs.core.demos.eventing;
+package org.subra.aem.rjs.core.demos.events;
 
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;

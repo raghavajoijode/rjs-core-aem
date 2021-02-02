@@ -1,4 +1,4 @@
-package org.subra.aem.rjs.core.demos.eventing;
+package org.subra.aem.rjs.core.demos.events;
 
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;

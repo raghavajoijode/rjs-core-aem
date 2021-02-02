@@ -93,29 +93,22 @@ public class MailerHelper {
         return (templatePath != null && templatePath.endsWith(".html")) || hasAttachments ? HtmlEmail.class : SimpleEmail.class;
     }
 
-    public static Email createEmail(final String content, Map<String, String> emailParams,
-                                    Class<? extends Email> mailType) throws EmailException {
+    public static Email createEmail(final String content, Map<String, String> emailParams, Class<? extends Email> mailType) throws EmailException {
         Email email = getEmail(content, mailType);
-        if (emailParams.containsKey(MailerUtils.SENDER_EMAIL_ADDRESS)
-                && emailParams.containsKey(MailerUtils.SENDER_NAME))
+        if (emailParams.containsKey(MailerUtils.SENDER_EMAIL_ADDRESS) && emailParams.containsKey(MailerUtils.SENDER_NAME))
             email.setFrom(emailParams.get(MailerUtils.SENDER_EMAIL_ADDRESS), emailParams.get(MailerUtils.SENDER_NAME));
         else if (emailParams.containsKey(MailerUtils.SENDER_EMAIL_ADDRESS))
             email.setFrom(emailParams.get(MailerUtils.SENDER_EMAIL_ADDRESS));
 
-        if (connectTimeout > 0)
-            email.setSocketConnectionTimeout(connectTimeout);
+        if (connectTimeout > 0) email.setSocketConnectionTimeout(connectTimeout);
 
-        if (soTimeout > 0)
-            email.setSocketTimeout(soTimeout);
+        if (soTimeout > 0) email.setSocketTimeout(soTimeout);
 
-        if (emailParams.containsKey(MailerUtils.SUBJECT))
-            email.setSubject(emailParams.get(MailerUtils.SUBJECT));
+        if (emailParams.containsKey(MailerUtils.SUBJECT)) email.setSubject(emailParams.get(MailerUtils.SUBJECT));
 
-        if (emailParams.containsKey(MailerUtils.CC))
-            email.addCc(emailParams.get(MailerUtils.CC));
+        if (emailParams.containsKey(MailerUtils.CC)) email.addCc(emailParams.get(MailerUtils.CC));
 
-        if (emailParams.containsKey(MailerUtils.BCC))
-            email.addBcc(emailParams.get(MailerUtils.BCC));
+        if (emailParams.containsKey(MailerUtils.BCC)) email.addBcc(emailParams.get(MailerUtils.BCC));
 
         if (emailParams.containsKey(MailerUtils.BOUNCE_ADDRESS))
             email.setBounceAddress(emailParams.get(MailerUtils.BOUNCE_ADDRESS));
@@ -123,24 +116,24 @@ public class MailerHelper {
         return email;
     }
 
-    public static Map<String, Object> sendEmail(final MailerGatewayService messageGateway, Template template,
-                                                Map<String, String> emailParams, Map<String, DataSource> attachments, String... recipients) {
+    public static Map<String, Object> sendEmail(final MailerGatewayService messageGateway, Template template2, Map<String, String> emailParams, Map<String, DataSource> attachments, String... recipients) {
+        return sendEmail(messageGateway, template2.getMessage(), emailParams, attachments, template2.getPath(), recipients);
+    }
+
+    public static Map<String, Object> sendEmail(final MailerGatewayService messageGateway, String messageContent, Map<String, String> emailParams, Map<String, DataSource> attachments, final String templatePath, String... recipients) {
         final String transactionId = UUID.randomUUID().toString();
         List<InternetAddress> failureList = new ArrayList<>();
         Map<String, Object> response = new HashMap<>();
         boolean status = false;
         response.put("transactionId", transactionId);
         InternetAddress[] addresses = convertToInternetAddresses(recipients);
-        if (addresses == null || addresses.length <= 0)
-            throw new IllegalArgumentException(MSG_INVALID_RECIPIENTS);
+        if (addresses == null || addresses.length <= 0) throw new IllegalArgumentException(MSG_INVALID_RECIPIENTS);
 
-        final String content = getEmailContent(template.getMessage(), emailParams);
+        final String content = getEmailContent(messageContent, emailParams);
         for (final InternetAddress address : addresses) {
             try {
                 boolean hasAttachments = attachments != null && attachments.size() > 0;
-                LOGGER.info("TTTTTTT {}", template);
-                LOGGER.info("TTTTTTT PATH {}", template.getPath());
-                Email email = createEmail(content, emailParams, getMailType(template.getPath(), hasAttachments));
+                Email email = createEmail(content, emailParams, getMailType(templatePath, hasAttachments));
                 email.setTo(Collections.singleton(address));
                 if (hasAttachments) {
                     for (Map.Entry<String, DataSource> entry : attachments.entrySet()) {
@@ -155,18 +148,15 @@ public class MailerHelper {
         }
         //updateRecord(template, transactionId, content, emailParams, status);
         response.put("Status", status ? "SUCCESS" : "FAILURE");
-        response.put("failureList", CollectionUtils.emptyIfNull(failureList).stream().map(InternetAddress::toString)
-                .collect(Collectors.toList()));
+        response.put("failureList", CollectionUtils.emptyIfNull(failureList).stream().map(InternetAddress::toString).collect(Collectors.toList()));
         return response;
     }
 
     public static String getEmailContent(final String content, Map<String, String> params) {
-        StrSubstitutor substitutor = new StrSubstitutor(StrLookup.mapLookup(params));
-        return substitutor.replace(content);
+        return new StrSubstitutor(StrLookup.mapLookup(params)).replace(content);
     }
 
-    private static String updateRecord(Template template, String transactionId, String content,
-                                       Map<String, String> params, boolean status) {
+    private static String updateRecord(Template template, String transactionId, String content, Map<String, String> params, boolean status) {
         MongoClient client = null;
         try {
             client = MongoDBUtils.createConnection("localhost", 27017, null, null);

@@ -1,4 +1,4 @@
-package org.subra.aem.rjs.core.demos.eventing;
+package org.subra.aem.rjs.core.demos.events;
 
 import org.apache.sling.api.SlingConstants;
 import org.osgi.framework.Constants;
