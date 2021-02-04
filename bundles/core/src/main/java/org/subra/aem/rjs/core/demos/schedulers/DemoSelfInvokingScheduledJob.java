@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 // White board pattern
 @Designate(ocd = DemoSelfInvokingScheduledJob.Config.class)
-@Component(service = Runnable.class)
+@Component(service = Runnable.class, enabled = false)
 public class DemoSelfInvokingScheduledJob implements Runnable {
 
     @ObjectClassDefinition(name = "A Demo self invoking scheduled job")

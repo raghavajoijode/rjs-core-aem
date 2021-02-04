@@ -18,7 +18,7 @@ public interface CacheService {
     @ObjectClassDefinition(name = "RJS EHCache Service", description = "Service for ehcache configuration")
     @interface Config {
         @AttributeDefinition(name = "cache.config", description = "RJS Cache ehcache.xml path")
-        String cacheConfig() default "/etc/rjs/core/cache/ehcache.xml";
+        String cacheConfig() default "/apps/rjs/core/utils/ehcache/config.xml";
     }
 
 }

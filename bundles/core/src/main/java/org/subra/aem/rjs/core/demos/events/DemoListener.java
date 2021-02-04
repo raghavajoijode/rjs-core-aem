@@ -26,7 +26,7 @@ import javax.jcr.observation.EventIterator;
 import javax.jcr.observation.EventListener;
 import javax.jcr.observation.ObservationManager;
 
-@Component(service = EventListener.class, immediate = true,
+@Component(service = EventListener.class, immediate = true, enabled = false,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Demo to Event Listener listen on changes in the resource tree"
         })

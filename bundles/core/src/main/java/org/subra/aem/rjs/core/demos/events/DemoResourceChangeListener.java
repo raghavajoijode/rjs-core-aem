@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component(service = ResourceChangeListener.class,
+@Component(service = ResourceChangeListener.class, enabled = false,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Demo to listen on changes in the resource tree"
                 //ResourceChangeListener.PATHS + "=/apps/demo",//ResourceChangeListener.CHANGES + "=ADDED"

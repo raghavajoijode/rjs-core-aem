@@ -1,0 +1,27 @@
+<template data-sly-template.displayPagination="${@ paging}">
+	<div class="subra-component" data-sly-test="${paging.list.size > 1}"> 
+        <div class="row center pagination-content">
+	        <ul class="pagination">
+	        	<sly data-sly-test.first="${paging.firstPage}"/>
+	            <li>
+	                <a class="${first && 'disabled'}" tabindex="${!first && '0'}">
+	                    <img class="prevPage" src="" alt="${'Previous Page' @ i18n}"/>
+	                </a>
+	            </li>
+	            <li data-sly-repeat="${paging.list}" class="${item == paging.page && 'active'}"><a href="javascript:void(0)">${item}</a></li>
+	            <sly data-sly-test.last="${paging.lastPage}"/>
+	            <li>
+	                <a class="${last && 'disabled'}" tabindex="${!last && '0'}">
+	                    <img class="nextPage" src="" alt="${'Next Page' @ i18n}" />
+	                </a>
+	            </li>
+	        </ul>
+        </div>
+    </div>
+</template>
+
+<template data-sly-template.displayPaginationRange="${@ paging}">
+	<div class="pagination-range row">
+		<div class="pagination-count">${'{0}-{1} of {2}' @ i18n, format=[paging.start, paging.end, paging.totalRecords]}</div>
+	</div>
+</template>
