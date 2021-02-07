@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 // Using Scheduler api
 @Designate(ocd = DemoScheduler.Config.class)
-@Component(service = DemoScheduler.class, immediate = true)
+@Component(service = DemoScheduler.class, immediate = true, enabled = false)
 public class DemoScheduler {
 
     @Reference

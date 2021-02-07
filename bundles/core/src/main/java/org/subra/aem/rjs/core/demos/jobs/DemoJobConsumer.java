@@ -23,7 +23,7 @@ import java.util.Map;
  * /var/eventing/jobs . Even when the system fails, the jobs int he queue will
  * retry to execute till it fails
  */
-@Component(service = JobConsumer.class,
+@Component(service = JobConsumer.class, enabled = false,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Sample Job Consumer",
                 JobConsumer.PROPERTY_TOPICS + "=" + DemoJobConsumer.TOPIC

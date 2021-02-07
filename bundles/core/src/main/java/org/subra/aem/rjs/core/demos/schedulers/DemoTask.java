@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Designate(ocd = DemoTask.Config.class)
-@Component(service = DemoTask.class)
+@Component(service = DemoTask.class, enabled = false)
 public class DemoTask implements Runnable {
 
     @ObjectClassDefinition(name = "A Demo scheduled task")
