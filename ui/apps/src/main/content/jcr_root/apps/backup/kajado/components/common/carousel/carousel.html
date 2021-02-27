@@ -1,8 +1,9 @@
 <div class="scomponent container-fluid"
-	 data-sly-use.carousel="org.subra.aem.foundation.core.models.CarouselModel"
+	 
 	 data-sly-use.template="/apps/kajado/components/templates/common.html"
 	 data-sly-set.carouselList="${carousel.carouselItems}" 
 	 data-sly-test.isNotEmpty="${!carouselList.isEmpty}">
+	 <!-- /* data-sly-use.carousel="org.subra.aem.rjs.core.component.models.CarouselModel" */ -->
 	<div class="subra-carousel carousel slide" data-ride="carousel" data-interval="${properties.interval || '5000'}" id="subra-bg-carousel">
 		
 		<!-- /* Indicators */ -->

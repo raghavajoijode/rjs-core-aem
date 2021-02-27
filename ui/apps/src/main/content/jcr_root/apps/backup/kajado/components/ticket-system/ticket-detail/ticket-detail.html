@@ -1,9 +1,10 @@
 <div class="sComponent ticket-listing container"
-	 data-sly-use.ticketsModel="${'org.subra.aem.foundation.core.models.TicketsModel'}"
+	 
 	 data-sly-test="${!ticketsModel.isTicketList}">
+	 <!-- /* data-sly-use.ticketsModel="${'org.subra.aem.rjs.core.component.models.TicketsModel'}" */ -->
 	<div data-sly-test.ticket="${ticketsModel.ticket}"
-		 data-sly-use.reporter="${'org.subra.aem.foundation.core.models.UserModel' @ suid='ticket.reporterId'}"
-		 data-sly-use.assignee="${'org.subra.aem.foundation.core.models.UserModel' @ suid='ticket.assigneeId'}">
+		 data-sly-use.reporter="${'org.subra.aem.rjs.core.component.models.UserModel' @ suid='ticket.reporterId'}"
+		 data-sly-use.assignee="${'org.subra.aem.rjs.core.component.models.UserModel' @ suid='ticket.assigneeId'}">
 		<h2 data-sly-test.ticketNumber="${ticket.ticketNumber}">${'Ticket Number :' @ i18n} ${ticketNumber}</h2>
 		<h3 data-sly-test.title="${ticket.heading}">${title}</h3>
 		<p data-sly-test.description="${ticket.description}">${description}</p>

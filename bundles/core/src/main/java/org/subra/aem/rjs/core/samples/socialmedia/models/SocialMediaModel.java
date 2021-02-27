@@ -1,4 +1,7 @@
-package org.subra.aem.rjs.core.samples.models;
+package org.subra.aem.rjs.core.samples.socialmedia.models;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Default;
@@ -6,18 +9,11 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.subra.aem.rjs.core.samples.socialmedia.services.SocialMediaService;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
-/*import org.subra.aem.foundation.example.sample.services.SocialMediaService;
-
-import twitter4j.Status;
-import twitter4j.Twitter;
+/* import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.conf.ConfigurationBuilder;*/
+import twitter4j.TwitterFactory; */
 
 /**
  * @author raghava
@@ -26,7 +22,7 @@ import twitter4j.conf.ConfigurationBuilder;*/
 @Model(adaptables = { SlingHttpServletRequest.class })
 public class SocialMediaModel {
 
-	/*@OSGiService
+	@OSGiService
 	private SocialMediaService socailMediaService;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocialMediaModel.class);
@@ -39,13 +35,11 @@ public class SocialMediaModel {
 
 	private String oAuthaccessTokenSecret;
 
-	private Twitter twitter;
+	//private Twitter twitter;
 
 	private String fbCompanyID;
 
 	private String fbOAuthAccessToken;
-
-	private int noOfStatus;
 
 	private String linkedInCompanyID;
 
@@ -61,7 +55,6 @@ public class SocialMediaModel {
 
 	@PostConstruct
 	public void init() {
-		noOfStatus = NoOfStatus;
 		this.oAuthConsumerKey = socailMediaService.getOAuthConsumerKey();
 		this.oAuthConsumerSecret = socailMediaService.getOAuthConsumerSecret();
 		this.oAuthAccessToken = socailMediaService.getOAuthAccessToken();
@@ -79,19 +72,19 @@ public class SocialMediaModel {
 
 	public void twitterConnect() {
 		LOGGER.info("Start of to Twitter");
-		ConfigurationBuilder cb = new ConfigurationBuilder();
+		//ConfigurationBuilder cb = new ConfigurationBuilder();
 		LOGGER.info("Start of proxy");
 		LOGGER.info("End of proxy");
 
-		cb.setDebugEnabled(true).setOAuthConsumerKey(this.oAuthConsumerKey)
+		/* cb.setDebugEnabled(true).setOAuthConsumerKey(this.oAuthConsumerKey)
 				.setOAuthConsumerSecret(this.oAuthConsumerSecret).setOAuthAccessToken(this.oAuthAccessToken)
 				.setOAuthAccessTokenSecret(this.oAuthaccessTokenSecret);
 		TwitterFactory tf = new TwitterFactory(cb.build());
-		twitter = tf.getInstance();
+		twitter = tf.getInstance(); */
 		LOGGER.debug("End of to Twitter");
 	}
 
-	public List<Status> getUserTimeLineTwitter() throws TwitterException {
+	/* public List<Status> getUserTimeLineTwitter() throws TwitterException {
 		List<Status> statusText = new ArrayList<>();
 		LOGGER.debug("In twitter method");
 		List<Status> twits = twitter.getUserTimeline();
@@ -103,7 +96,7 @@ public class SocialMediaModel {
 		LOGGER.debug(" Status Text {}", statusText);
 
 		return statusText;
-	}
+	} */
 
 	public String getYoutubeChannelName() {
 
@@ -133,6 +126,6 @@ public class SocialMediaModel {
 	public String getFacebookCompanyID() {
 
 		return this.fbCompanyID;
-	}*/
+	}
 
 }

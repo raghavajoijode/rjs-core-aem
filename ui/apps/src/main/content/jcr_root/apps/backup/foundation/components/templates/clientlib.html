@@ -28,6 +28,6 @@
                                          	   loading='optional: JS async or defer',
                                          	   onload='optional: JS to run for async and defer',
                                          	   crossorigin='optional: accepts anonymous and use-credentials'}"
-    	  data-sly-use.clientlib="${'org.subra.aem.foundation.core.models.ClientLibUseObject' @ categories=categories, mode=mode, loading=loading, onload=onload, crossorigin=crossorigin}">
+    	  data-sly-use.clientlib="${'org.subra.aem.rjs.core.component.models.ClientLibUseObject' @ categories=categories, mode=mode, loading=loading, onload=onload, crossorigin=crossorigin}">
 ${clientlib.includeMarkUp @ context='unsafe'}
 </template>

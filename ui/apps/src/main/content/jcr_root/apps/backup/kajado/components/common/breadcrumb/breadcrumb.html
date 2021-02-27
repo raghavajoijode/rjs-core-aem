@@ -1,7 +1,7 @@
 <nav class="scomponent subra-breadcrumb" aria-label="breadcrumb"
-	 data-sly-use.breadcrumb="org.subra.aem.foundation.core.models.BreadcrumbModel"
 	 data-sly-use.template="/apps/kajado/components/templates/common.html"
 	 data-sly-test.isNotEmpty="${breadcrumb.items.size > 0}">
+     <!-- /* data-sly-use.breadcrumb="org.subra.aem.rjs.core.component.models.BreadcrumbModel" */-->
 	<ol class="breadcrumb m-0"
         itemscope itemtype="http://schema.org/BreadcrumbList"
         data-sly-list.navItem="${breadcrumb.items}">
