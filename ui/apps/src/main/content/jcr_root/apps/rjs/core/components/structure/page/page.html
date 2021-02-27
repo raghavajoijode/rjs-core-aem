@@ -1,16 +1,12 @@
 <html>
-
-<head>
-    <!--/* Page Title */-->
-    <title>${properties.pageTitle || properties['jcr:title']}</title>
-    <meta name="description" content="${properties.description}">
-    <meta name="keywords" content="${properties.keywords}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-</head>
-
-<body>
-
-</body>
-
+	<head>
+		<sly data-sly-include="a/head.html"/>
+		<sly data-sly-include="a/head-libs.html"/>
+	</head>
+	<body>
+		<sly data-sly-include="a/header.html"/>
+		<sly data-sly-include="a/main.html"/>
+		<sly data-sly-include="a/footer.html"/>
+		<sly data-sly-include="a/foot-libs.html"/>
+	</body>
 </html>
