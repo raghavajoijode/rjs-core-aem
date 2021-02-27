@@ -9,8 +9,7 @@ import org.osgi.service.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(service = EventHandler.class,
-           enabled = false,
+@Component(service = EventHandler.class, enabled = false,
            property = {
                    Constants.SERVICE_DESCRIPTION + "=Demo to listen on changes in the resource tree",
                    EventConstants.EVENT_TOPIC + "=org/apache/sling/api/resource/Resource/*"

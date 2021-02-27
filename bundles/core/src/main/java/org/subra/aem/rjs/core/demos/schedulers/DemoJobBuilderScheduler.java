@@ -18,7 +18,7 @@ import org.subra.aem.rjs.core.demos.jobs.DemoJobConsumerNew;
  * /var/eventing/jobs . Even when the system fails, the jobs int he queue will
  * retry to execute till it fails
  */
-@Component(service = DemoJobBuilderScheduler.class, immediate = true)
+@Component(service = DemoJobBuilderScheduler.class, immediate = true, enabled = false)
 public class DemoJobBuilderScheduler {
 
     private final Logger log = LoggerFactory.getLogger(getClass());

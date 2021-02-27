@@ -19,7 +19,7 @@ import org.subra.commons.helpers.CommonHelper;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component(service = EventHandler.class,
+@Component(service = EventHandler.class, enabled = false,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Demo to listen on changes in the Replication tree",
                 EventConstants.EVENT_TOPIC + "=com/day/cq/replication"
