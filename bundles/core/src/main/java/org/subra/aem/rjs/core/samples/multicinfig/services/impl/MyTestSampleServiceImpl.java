@@ -1,4 +1,4 @@
-package org.subra.aem.foundation.example.multicinfig.services.impl;
+package org.subra.aem.rjs.core.samples.multicinfig.services.impl;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -7,7 +7,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.foundation.example.multicinfig.services.MyTestSampleService;
+import org.subra.aem.rjs.core.samples.multicinfig.services.MyTestSampleService;
 
 @Component(service = MyTestSampleService.class)
 @Designate(ocd = MyTestSampleServiceImpl.Config.class)

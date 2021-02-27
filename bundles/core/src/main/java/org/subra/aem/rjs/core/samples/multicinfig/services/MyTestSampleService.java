@@ -1,4 +1,4 @@
-package org.subra.aem.foundation.example.multicinfig.services;
+package org.subra.aem.rjs.core.samples.multicinfig.services;
 
 /**
  * 

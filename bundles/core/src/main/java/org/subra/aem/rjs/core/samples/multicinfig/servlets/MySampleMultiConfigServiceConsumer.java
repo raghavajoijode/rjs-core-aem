@@ -1,19 +1,4 @@
-/*
- *  Copyright 2015 Adobe Systems Incorporated
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-package org.subra.aem.foundation.example.multicinfig.servlets;
+package org.subra.aem.rjs.core.samples.multicinfig.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +18,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.foundation.example.multicinfig.services.MyTestSampleMultiConfigService;
+import org.subra.aem.rjs.core.samples.multicinfig.services.MyTestSampleMultiConfigService;
 
 @Component(service = Servlet.class, property = {
 		Constants.SERVICE_DESCRIPTION + "=MySampleMultiConfigServiceConsumer Demo Servlet",
@@ -43,7 +28,7 @@ public class MySampleMultiConfigServiceConsumer extends SlingSafeMethodsServlet 
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(MySampleMultiConfigServiceConsumer.class);
-	private List<MyTestSampleMultiConfigService> configurationList;
+	private transient List<MyTestSampleMultiConfigService> configurationList;
 
 	/**
 	 * Executed on Configuration Add event

@@ -1,11 +1,11 @@
-package org.subra.aem.foundation.example.multicinfig.services.impl;
+package org.subra.aem.rjs.core.samples.multicinfig.services.impl;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
-import org.subra.aem.foundation.example.multicinfig.services.MyTestSampleMultiConfigService;
+import org.subra.aem.rjs.core.samples.multicinfig.services.MyTestSampleMultiConfigService;
 
 @Component(service = MyTestSampleMultiConfigService.class)
 @Designate(ocd = MyTestSampleMultiConfigServiceImpl.Config.class, factory = true)
