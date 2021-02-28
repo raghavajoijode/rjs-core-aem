@@ -8,7 +8,7 @@
 		
 		<link rel="stylesheet" href="..\..\..\additional\mocks\clientlibs\clientlib-bootstrap\4.3.1\css\bootstrap.css" />
 		<link rel="stylesheet" href="..\..\..\additional\mocks\clientlibs\clientlib-fontawesome\css\4.7.0\font-awesome.css"/>
-		<link rel="stylesheet" href="..\..\..\additional\mocks\fonts\fonts-happymonkey\css\fonts.css" />
+		<link rel="stylesheet" href="..\..\..\..\..\..\ui.content\src\main\content\jcr_root\etc\clientlibs\subra\fonts-happymonkey\css\fonts.css">
 		<link rel="stylesheet" href="..\..\..\additional\mocks\clientlibs\clientlib-global\css\global.css">
 		
 		<script src="..\..\..\additional\mocks\clientlibs\clientlib-jquery\clientlib-jquery-standalone\js\jquery-3.4.1.js"></script>
@@ -23,31 +23,25 @@
 		
 		<link rel="stylesheet" href="..\..\..\additional\mocks\clientlibs\clientlib-global\css\home.css"/>
 		<link rel="stylesheet" href="..\..\..\additional\mocks\clientlibs\clientlib-global\css\carousel.css"/>
-		
-		
-
 	</head>
 	<body class="subra">
 	
-		<header>
-			<!-- -------------------- -->
-			<!-- Header               -->
-			<!-- -------------------- -->
-
-			<!-- Header CSS -->
-			<link rel="stylesheet" href="..\..\..\additional\mocks\clientlibs\clientlib-global\css\header.css" />
-			<div class="scomponent header">
-				<div class="header_company">
-					<a class="header_company-link" href="#"><img class="header_logo" alt="subra logo" src="../global/images/logo/subra-logo-185x80.png" /></a>
+		<!-- -------------------- -->
+		<!-- Header               -->
+		<!-- -------------------- -->
+		<header class="subra-header navbar navbar-default navbar-fixed-top">
+			<div class="scomponent container-fluid">
+				<div class="navbar-header header-logo">
+					<a class="navbar-brand" href="#"><img class="logo" src="../global/images/logo/subra-logo-185x80.png"></a>
 				</div>
-				<ul class="header__menu-links">
-					<li class="header__menu-link active"><a href="#">Home</a></li>
-					<li class="header__menu-link"><a href="#">Page 1</a></li>
-					<li class="header__menu-link"><a href="#">Page 2</a></li>
+				<ul class="header-center">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Page 1</a></li>
+					<li><a href="#">Page 2</a></li>
 				</ul>
-				<ul class="header__user-nav">
-					<li class="header__user-nav-link"><a href="#">Sign Up</a></li>
-					<li class="header__user-nav-link"><a href="#">Login</a></li>
+				<ul class="header-right">
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				</ul>
 			</div>
 		</header>
@@ -66,7 +60,7 @@
 			<!-- -------------------- -->
 			<!-- Carousel       COPIED      -->
 			<!-- -------------------- -->
-			<div class="scomponent">
+			<div class="scomponent container-fluid">
 				<div class="subra-carousel carousel slide" data-ride="carousel" data-interval="5000" id="subra-bg-carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
@@ -345,7 +339,7 @@
 			<!-- -------------------- -->
 			<!-- Container        -->
 			<!-- -------------------- -->
-			<div class="scomponent text-center">
+			<div class="scomponent container-fluid text-center">
 				<div class="row justify-content-around">
 					<div class="col-md-4">
 						<img src="../global/images/carousel/carousel-1.jpg"/>
@@ -363,7 +357,7 @@
 			<!-- Product Cards        -->
 			<!-- -------------------- -->
 			
-			<div class="scomponent text-center">
+			<div class="scomponent container-fluid text-center">
 				<div class="row justify-content-middle">
 					<div class="col-md-4">
 						<div class="subra-card card">
@@ -562,7 +556,7 @@
 		<!-- Footer               -->
 		<!-- -------------------- -->
 		<footer class="subra-footer">
-			<div class="scomponent text-white">
+			<div class="scomponent container-fluid text-white">
 				<div class="row footer-disclaimer">
 					<div class="col justify-content-center">
 						<div class="social-icons">
