@@ -1,0 +1,9 @@
+[init]
+        templatedir = C:/Users/raghava.joijode/.acn-security-tools/git-template
+[credential]
+        helper = manager-core
+[user]
+        name = Joijode, Raghava
+        email = raghava.joijode@accenture.com
+[http]
+        sslVerify = false
