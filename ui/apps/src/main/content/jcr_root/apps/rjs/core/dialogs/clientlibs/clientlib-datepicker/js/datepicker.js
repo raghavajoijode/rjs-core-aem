@@ -4,19 +4,15 @@
 // 3. get id constant
 
 (function ($, window, document, Granite) {
-	var currentDate = new Date();
-    var maxDate = new Date();
-    maxDate.setDate(maxDate.getDate() + 5);
+	const currentDate = new Date();
+    const MAX_ALLOWED_DAYS = 180;
+	const DATE_PICKER_ID = 'activation-date';
+	const maxDate = getMaxDate(MAX_ALLOWED_DAYS);
 
     $(document).on("dialog-ready", function() {
-        const datepicker = document.querySelector('#activation-date');
-        setMaxDate(datepicker, maxDate);
+        const datepicker = document.getElementById(DATE_PICKER_ID);
+        datepicker.max = maxDate;
     });
-	
-	// TODO:
-    function setMaxDate(el, date) {
-    	el.max = date;
-    }
 	
 	// TODO: depricated - Update with foundation-validation
     $.validator.register({
@@ -28,4 +24,9 @@
             }
         }
     });
+	
+	getMaxDate = (days) => {
+		return new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+	}
+	
 }(jQuery, window, document, Granite));
