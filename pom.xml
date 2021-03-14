@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 	<parent>
         <groupId>org.subra.aem</groupId>
         <artifactId>rjs-core.parent</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.2</version>
         <relativePath>./parent/pom.xml</relativePath>
     </parent>
 	
     <artifactId>rjs-core.reactor</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <name>RJS Core - Reactor</name>
     <description>RJS Core Reactor</description>
     <!-- AEM VERSION - 6.5.0 -->
@@ -32,6 +30,6 @@
 
     <scm>
         <connection>scm:git:https://github.com/raghavajoijode/rjs-core-aem.git</connection>
-        <tag>V1.0</tag>
+        <tag>rjs-core.reactor-1.0.2</tag>
     </scm>
 </project>
