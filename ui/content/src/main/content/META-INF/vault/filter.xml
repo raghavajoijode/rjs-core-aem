@@ -2,6 +2,7 @@
 <workspaceFilter version="1.0">
     <filter root="/conf/rjs-core" mode="merge"/>
     <filter root="/content/rjs-core" mode="merge"/>
+	<filter root="/content/we-retail" mode="merge"/>
     <filter root="/content/dam/rjs-core" mode="merge"/>
     <filter root="/content/experience-fragments/rjs-core" mode="merge"/>
 </workspaceFilter>
