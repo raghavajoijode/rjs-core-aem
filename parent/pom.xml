@@ -4,7 +4,7 @@
     <groupId>org.subra.aem</groupId>
     <artifactId>rjs-core.parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
     <name>RJS Core - Parent</name>
     <description>RJS Core Parent</description>
     <!-- AEM VERSION - 6.5.0 -->
