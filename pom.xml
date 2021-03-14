@@ -4,13 +4,13 @@
 	<parent>
         <groupId>org.subra.aem</groupId>
         <artifactId>rjs-core.parent</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
         <relativePath>./parent/pom.xml</relativePath>
     </parent>
 	
     <artifactId>rjs-core.reactor</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <name>RJS Core - Reactor</name>
     <description>RJS Core Reactor</description>
     <!-- AEM VERSION - 6.5.0 -->
@@ -30,6 +30,6 @@
 
     <scm>
         <connection>scm:git:https://github.com/raghavajoijode/rjs-core-aem.git</connection>
-        <tag>V1.0</tag>
+        <tag>rjs-core.reactor-1.0.3</tag>
     </scm>
 </project>
