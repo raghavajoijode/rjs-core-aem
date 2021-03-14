@@ -10,6 +10,16 @@ It will adjust all pom versions, parent versions and dependency versions in a mu
 
 If you made a mistake, do `mvn versions:revert` afterwards, or `mvn versions:commit -DprocessAllModules`
 
+
+## Release
+
+Removes snapshot from a current version and creates tag and creates a new snapshot upversion
+
+`mvn release:clean release:prepare`
+
+`mvn release:clean release:prepare release:perform -DreleaseVersion=${releaseVersion} -DdevelopmentVersion=${developmentVersion}`
+
+
 ## Building and Deploying 
 Use profile `buildFor64` to build project deployable in 6.4 Instance.
 
