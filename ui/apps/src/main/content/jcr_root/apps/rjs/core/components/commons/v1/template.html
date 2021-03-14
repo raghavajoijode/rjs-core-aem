@@ -1,0 +1,5 @@
+<sly data-sly-template.placeholder="${@ isEmpty, cssClass, emptyTextPrefix, emptyTextSuffix}">
+    <div data-sly-test="${(wcmmode.edit || wcmmode.preview) && isEmpty}"
+         class="cq-placeholder ${cssClass}"
+         data-emptytext="${emptyTextPrefix}${emptyTextPrefix && ' - '}${component.properties.jcr:title}${emptyTextSuffix && ' - '}${emptyTextSuffix}"></div>
+</sly>
