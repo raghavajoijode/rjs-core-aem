@@ -3,7 +3,7 @@
     jcr:primaryType="nt:unstructured"
     jcr:title="Datepicker  Component"
     sling:resourceType="cq/gui/components/authoring/dialog"
-    extraClientlibs="[rjs.dialog.datepicker]"
+    extraClientlibs="[rjs.dialog.datepicker,rjs.dialog.pathbrowser]"
     helpPath="https://www.adobe.com/go/aem_cmp_title_v1">
     <content
         jcr:primaryType="nt:unstructured"
@@ -14,7 +14,6 @@
                 sling:resourceType="granite/ui/components/coral/foundation/container">
                 <items jcr:primaryType="nt:unstructured">
                     <datepicker
-                        granite:data-m="10"
                         granite:id="activation-date"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
@@ -27,6 +26,17 @@
                             error-message="Message"
                             max-days="10"/>
                     </datepicker>
+                    <pathbrowser
+                        granite:id="pathb-val"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                        fieldDescription="Leave empty to use the page title."
+                        fieldLabel="Title"
+                        name="./path">
+                        <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            error-message="Wrong Path"/>
+                    </pathbrowser>
                 </items>
             </column>
         </items>
