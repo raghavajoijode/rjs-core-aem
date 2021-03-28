@@ -77,10 +77,10 @@ public class SampleCallJsos extends SlingAllMethodsServlet {
 						response.getStatusLine().getStatusCode());
 			}
 		} catch (ClientProtocolException e) {
-			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> ClientProtocolException {}", e);
+			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> ClientProtocolException", e);
 			return "ClientProtocolException";
 		} catch (IOException e) {
-			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> IOException {}", e);
+			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> IOException", e);
 			return "IOException";
 		}
 		return "null";

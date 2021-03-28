@@ -258,7 +258,7 @@ public class WorkFlowReportServiceImpl implements WorkFlowReportService {
                 LOGGER.info("___________ASSIGNEE END____________--");
             }
         } catch (RepositoryException e) {
-            LOGGER.error("Exception occured {}", e);
+            LOGGER.error("Exception occured", e);
         }
 
         return currentAssignee;

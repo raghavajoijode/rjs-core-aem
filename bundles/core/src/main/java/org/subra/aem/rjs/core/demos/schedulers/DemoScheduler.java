@@ -57,9 +57,9 @@ public class DemoScheduler {
     private void addScheduler(final Config config) {
         if (config.scheduler_enabled()) {
             // TODO add to RJSDateUtils - Converting local date to util.Date
-            /*LocalDateTime ldt = LocalDateTime.of(2021, 2, 12, 10, 20);
-            ZonedDateTime zdt = ldt.atZone(ZoneId.systemDefault());
-            Date date = Date.from(zdt.toInstant());*/
+            // LocalDateTime ldt = LocalDateTime.of(2021, 2, 12, 10, 20)
+            // ZonedDateTime zdt = ldt.atZone(ZoneId.systemDefault())
+            // Date date = Date.from(zdt.toInstant())
 
             // Create a schedule options to schedule the job based on the expression.
             ScheduleOptions cronScheduleOptions = scheduler.EXPR(config.my_cron_expression());
@@ -67,32 +67,30 @@ public class DemoScheduler {
             cronScheduleOptions.canRunConcurrently(false);
             boolean status = scheduler.schedule(task, cronScheduleOptions);
 
-            /* - Various available options
+            // - Various available options
             // Create a schedule options to fire a job once at a specific date
-            ScheduleOptions scheduleOptions = scheduler.AT(date);
+            // ScheduleOptions scheduleOptions = scheduler.AT(date)
 
             //Create a schedule options to fire a job period starting at a specific date
             // here scheduler runs 2 times (use -1 for endless) for every 30 sec after given date
-            scheduleOptions = scheduler.AT(date, 2, 30);
+            // scheduleOptions = scheduler.AT(date, 2, 30)
 
             // Create a schedule options to fire a job immediately and only once
-            scheduleOptions = scheduler.NOW();
+            // scheduleOptions = scheduler.NOW()
 
             // Create a schedule options to fire a job immediately more than once.
             // here scheduler runs 2 times (use -1 for endless) for every 30 sec after current date time
-            scheduleOptions = scheduler.NOW(2, 3);
+            // scheduleOptions = scheduler.NOW(2, 3)
 
             // Create a schedule options to schedule the job based on the expression
-            scheduleOptions = scheduler.EXPR("0 0/2 * ? * * *");
+            // scheduleOptions = scheduler.EXPR("0 0/2 * ? * * *")
 
-            scheduleOptions.name(config.scheduler_name());
+            // scheduleOptions.name(config.scheduler_name())
             // Whether this job can run even if previous scheduled runs are still running
-            scheduleOptions.canRunConcurrently(false);
+            // scheduleOptions.canRunConcurrently(false)
 
             // schedule a job returns true if job is scheduled else false
-            scheduler.schedule(job, scheduleOptions);
-            */
-
+            // scheduler.schedule(job, scheduleOptions)
 
             log.info(status ? "Scheduler added successfully" : "Scheduler initiated but could not be added");
         } else {

@@ -147,7 +147,7 @@ public class ContactUsFormServlet extends SlingAllMethodsServlet {
 	}
 
 	@Reference
-	private SlingRepository repository;
+	private transient SlingRepository repository;
 
 	private String mailProtocol;
 	private String portNumber;

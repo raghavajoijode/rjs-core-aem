@@ -45,10 +45,12 @@ public class LoggingFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
+        // Do nothing
     }
 
     @Override
     public void destroy() {
+        // Do nothing
     }
 
 }

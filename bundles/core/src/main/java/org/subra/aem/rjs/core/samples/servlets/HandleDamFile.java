@@ -37,7 +37,7 @@ public class HandleDamFile extends SlingAllMethodsServlet {
 	private static final long serialVersionUID = 2598426539166789515L;
 
 	@Reference
-	private ResourceResolverFactory resourceResolverFactory;
+	private transient ResourceResolverFactory resourceResolverFactory;
 
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {

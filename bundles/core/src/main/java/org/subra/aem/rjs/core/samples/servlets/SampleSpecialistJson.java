@@ -66,7 +66,7 @@ public class SampleSpecialistJson extends SlingAllMethodsServlet {
 		} catch (
 
 		Exception e) {
-			LOGGER.info("in exception {}", e);
+			LOGGER.info("in exception", e);
 		}
 	}
 

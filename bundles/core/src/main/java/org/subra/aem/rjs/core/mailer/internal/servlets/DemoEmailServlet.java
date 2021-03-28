@@ -36,7 +36,7 @@ public class DemoEmailServlet extends SlingSafeMethodsServlet {
         emailParams.put(MailerUtils.TO, "raghava.joijode@gmail.com");
         // Map<String, Object> response = emailService.sendEmail(
         //        "/conf/foundation/settings/notification/email/subra/sample.html", emailParams,
-        //        "raghava.joijode@gmail.com", "angelsubhashree@gmail.com");
+        //        "raghava.joijode@gmail.com", "angelsubhashree@gmail.com")
         resp.setContentType(HttpType.MEDIA_TYPE_JSON.value());
         resp.getWriter().write(CommonHelper.writeValueAsString(emailService.sendEmail(new Template("*************** Test Message ***************"), emailParams, null, null)));
     }

@@ -26,10 +26,10 @@ import java.io.IOException;
 public class DocumentLibraryServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private transient final Logger log = LoggerFactory.getLogger(getClass());
 
     @Reference
-    private DocumentLibraryService documentLibraryService;
+    private transient DocumentLibraryService documentLibraryService;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {

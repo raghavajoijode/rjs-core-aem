@@ -21,12 +21,12 @@ import java.util.Optional;
 @ServiceDescription("Subra - Generic Service")
 public class SubraGenericServiceImpl implements SubraGenericService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SubraGenericServiceImpl.class);
-    // private static final String ADMIN_RECIPENT_EMAIL = "raghava.joijode@gmail.com";
-    // private static final String ADMIN_RECIPENT_NAME = "Admin";
-    // private static final String DEFAULT_SENDER_NAME = "Subra Group";
+    // private static final String ADMIN_RECIPENT_EMAIL = "raghava.joijode@gmail.com"
+    // private static final String ADMIN_RECIPENT_NAME = "Admin"
+    // private static final String DEFAULT_SENDER_NAME = "Subra Group"
 
     // @Reference
-    // SubraTemplatedEmailService templatedEmailService;
+    // SubraTemplatedEmailService templatedEmailService
 
     @Reference
     RestClientService restClientService;
@@ -41,22 +41,22 @@ public class SubraGenericServiceImpl implements SubraGenericService {
     public void sendExceptionMessage(String className, String message) {
         /*boolean status = templatedEmailService.email(EmailType.EXCEPTION, "[EXCEPTION] :" + className,
                 ADMIN_RECIPENT_NAME, DEFAULT_SENDER_NAME, null, Collections.singletonMap("exception", message),
-                ADMIN_RECIPENT_EMAIL);
+                ADMIN_RECIPENT_EMAIL)
         if (status) {
-            LOGGER.info("Sent Email with message {}", message);
+            LOGGER.info("Sent Email with message {}", message)
         } else {
-            LOGGER.error("Error sending Email with message {}", message);
+            LOGGER.error("Error sending Email with message {}", message)
         }*/
     }
 
     @Override
     public void sendElectronicMessage(String subject, String message) {
         /*boolean status = templatedEmailService.email(EmailType.GENERIC, subject, ADMIN_RECIPENT_NAME,
-                DEFAULT_SENDER_NAME, null, Collections.singletonMap("message", message), ADMIN_RECIPENT_EMAIL);
+                DEFAULT_SENDER_NAME, null, Collections.singletonMap("message", message), ADMIN_RECIPENT_EMAIL)
         if (status) {
-            LOGGER.info("Sent Email with message {}", message);
+            LOGGER.info("Sent Email with message {}", message)
         } else {
-            LOGGER.error("Error sending Email with message {}", message);
+            LOGGER.error("Error sending Email with message {}", message)
         }*/
     }
 

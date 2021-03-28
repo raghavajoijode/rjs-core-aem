@@ -146,7 +146,7 @@ public class MailerHelper {
                 LOGGER.error("Error sending email to [ {} ]", address, e);
             }
         }
-        //updateRecord(template, transactionId, content, emailParams, status);
+        //updateRecord(template, transactionId, content, emailParams, status)
         response.put("Status", status ? "SUCCESS" : "FAILURE");
         response.put("failureList", CollectionUtils.emptyIfNull(failureList).stream().map(InternetAddress::toString).collect(Collectors.toList()));
         return response;

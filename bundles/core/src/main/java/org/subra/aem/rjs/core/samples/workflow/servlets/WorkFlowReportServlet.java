@@ -28,10 +28,10 @@ import java.util.Date;
 public class WorkFlowReportServlet extends SlingAllMethodsServlet {
 
 	@Reference
-	WorkFlowReportService workFlowReportService;
+	transient WorkFlowReportService workFlowReportService;
 
 	@Reference
-	WorkFlowReportExportService workFlowReportExportService;
+	transient WorkFlowReportExportService workFlowReportExportService;
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(WorkFlowReportServlet.class);

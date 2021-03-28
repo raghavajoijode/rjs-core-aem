@@ -1,10 +1,11 @@
 package org.subra.aem.rjs.core.account.handlers;
 
 import org.apache.sling.auth.core.spi.AuthenticationFeedbackHandler;
+import org.apache.sling.auth.core.spi.AuthenticationHandler;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-public interface AuthenticationHandler extends org.apache.sling.auth.core.spi.AuthenticationHandler, AuthenticationFeedbackHandler {
+public interface RJSAuthenticationHandler extends AuthenticationHandler, AuthenticationFeedbackHandler {
 
     String AUTH_TYPE = "RJS_AUTH";
 

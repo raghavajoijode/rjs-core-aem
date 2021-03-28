@@ -83,7 +83,7 @@ public class SpecialistFinder extends SlingAllMethodsServlet {
 			response.getWriter().println(finalObject);
 
 		} catch (Exception e) {
-			LOGGER.info("in exception {}", e);
+			LOGGER.info("in exception", e);
 		}
 	}
 
@@ -146,13 +146,13 @@ public class SpecialistFinder extends SlingAllMethodsServlet {
 			}
 
 		} catch (ClientProtocolException e) {
-			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> ClientProtocolException {}", e);
+			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> ClientProtocolException", e);
 			finalObject.put(STATUS, "ClientProtocolException");
 		} catch (IOException e) {
-			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> IOException {}", e);
+			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> IOException", e);
 			finalObject.put(STATUS, "IOException");
 		} catch (JSONException e) {
-			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> JSONException {}", e);
+			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> JSONException", e);
 			finalObject.put(STATUS, "JSONException");
 		}
 	}
@@ -200,7 +200,7 @@ public class SpecialistFinder extends SlingAllMethodsServlet {
 			jsonArray.put(obj);
 			finalObject.put(STATUS, "OK");
 		} catch (JSONException e) {
-			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> JSONException Create JSOn {}", e);
+			LOGGER.info("Some Error Occured with Request - Unsuccesfull --> JSONException Create JSOn", e);
 		}
 	}
 	// http://localhost:4502/bin/fertilitylifelines/specialistfinder?origin=30.696349,-88.075965&unitType=imperial&radius=50&key=AIzaSyAuYoPsqEflRkjKf627CXlrKqQ9iuLMmUs&dataSource=/content/dam/servlets/aaa.xlsx

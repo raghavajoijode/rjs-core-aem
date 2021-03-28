@@ -126,7 +126,7 @@ public class SiteMapServletMultiLanguage extends SlingSafeMethodsServlet {
 	private static final String NS_ALT = "http://www.w3.org/1999/xhtml";
 
 	@Reference
-	private Externalizer externalizer;
+	private transient Externalizer externalizer;
 
 	private String externalizerDomain;
 

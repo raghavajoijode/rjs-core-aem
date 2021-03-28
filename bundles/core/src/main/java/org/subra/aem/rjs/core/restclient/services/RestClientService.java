@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public interface RestClientService {
 
-    <T> T getDataFromResource(final String resourceName, final Class<T> clazz) throws RJSApiException;
+    <T> T getDataFromResource(final String resourceName, final Class<T> clazz);
 
     <T> T getData(final String endpointUrl, final String resource, final Map<String, String> requestHeaders, final Map<String, String> queryParams, final Class<T> clazz) throws RJSApiException;
 

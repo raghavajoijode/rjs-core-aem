@@ -78,7 +78,7 @@ public class SimpleListener implements EventListener {
             Session session = resourceResolver.adaptTo(Session.class);
             observationManager = session.getWorkspace().getObservationManager();
             observationManager.addEventListener(this, Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED, ioaPath, true, null, null, true);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             LOGGER.error("Can not access the JCR to register event listener", e);
         }
     }
@@ -111,7 +111,7 @@ public class SimpleListener implements EventListener {
                     LOGGER.trace("Got unsupported path from JCR event: {} (relative={})", event.getPath(),
                             relativePath);
                 }
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 LOGGER.error("Error updating content page", e);
             }
         }
@@ -146,7 +146,7 @@ public class SimpleListener implements EventListener {
             } else {
                 LOGGER.warn("TemplatePath for contentPath: {} not found!", contentPath);
             }
-        } catch (Throwable e) {
+        } catch (Exception e) {
             LOGGER.error("Failed to create page", e);
         }
     }

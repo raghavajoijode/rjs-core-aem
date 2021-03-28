@@ -20,7 +20,7 @@ import org.osgi.service.component.propertytypes.ServiceRanking;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.account.handlers.AuthenticationHandler;
+import org.subra.aem.rjs.core.account.handlers.RJSAuthenticationHandler;
 import org.subra.aem.rjs.core.account.services.UserService;
 import org.subra.aem.rjs.core.jcr.utils.RJSInstanceUtils;
 import org.subra.aem.rjs.core.jcr.utils.RJSResourceUtils;
@@ -33,11 +33,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
-@Component(service = AuthenticationHandler.class, immediate = true)
+@Component(service = RJSAuthenticationHandler.class, immediate = true)
 @ServiceRanking(10)
 @ServiceDescription("RJS Authentication Handler")
-@Designate(ocd = AuthenticationHandler.Config.class)
-public class AuthenticationHandlerImpl implements AuthenticationHandler {
+@Designate(ocd = RJSAuthenticationHandler.Config.class)
+public class AuthenticationHandlerImpl implements RJSAuthenticationHandler {
 
     public static final String TOKEN_KEY = "tokenKey";
     static final String REQUEST_URL_SUFFIX = "/j_security_check";

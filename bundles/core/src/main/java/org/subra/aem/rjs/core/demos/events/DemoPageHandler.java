@@ -8,7 +8,6 @@ import com.day.cq.workflow.WorkflowService;
 import com.day.cq.workflow.WorkflowSession;
 import com.day.cq.workflow.exec.WorkflowData;
 import com.day.cq.workflow.model.WorkflowModel;
-import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -21,6 +20,7 @@ import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.subra.aem.rjs.core.jcr.utils.RJSResourceUtils;
 
 import javax.jcr.Credentials;
 import javax.jcr.Session;
@@ -49,8 +49,6 @@ public class DemoPageHandler implements EventHandler {
     @Reference
     private ResourceResolverFactory resolverFactory;
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
-
     public void handleEvent(final Event event) {
         PageEvent pageEvent = PageEvent.fromEvent(event);
         if (pageEvent != null && pageEvent.isLocal()) {
@@ -69,7 +67,7 @@ public class DemoPageHandler implements EventHandler {
         log.info("Initiating WF...");
         ResourceResolver resourceResolver = null;
         try {
-            resourceResolver = resolverFactory.getAdministrativeResourceResolver(null); // Update 2 resolverFactory.getServiceResourceResolver(null);
+            resourceResolver = RJSResourceUtils.getAdminServiceResourceResolver(resolverFactory);
         } catch (LoginException e) {
             log.info("Exception getting resolver..", e);
         }

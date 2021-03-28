@@ -13,7 +13,6 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.Template;
 import com.day.cq.wcm.api.components.ComponentContext;
 import com.day.cq.wcm.api.designer.Design;
-import com.day.cq.wcm.api.designer.Designer;
 import com.day.cq.wcm.api.designer.Style;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.ArrayUtils;

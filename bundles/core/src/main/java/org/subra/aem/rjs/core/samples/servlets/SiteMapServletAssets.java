@@ -137,7 +137,7 @@ public class SiteMapServletAssets extends SlingSafeMethodsServlet {
 	private static final String NS_VIDEO = "http://www.google.com/schemas/sitemap-video/1.1";
 
 	@Reference
-	private Externalizer externalizer;
+	private transient Externalizer externalizer;
 
 	private String externalizerDomain;
 
@@ -325,7 +325,7 @@ public class SiteMapServletAssets extends SlingSafeMethodsServlet {
 		String videoImage = imageFromDam != null && !(imageFromDam.equals("")) ? imageFromDam
 				: "/etc/designs/demo/images/header/abc-logo.jpg";
 		String videoImageLoc = externalizer.externalLink(resolver, externalizerDomain, videoImage);
-		videoImageLoc = videoImageLoc.replaceAll("http://", "https://");
+		videoImageLoc = videoImageLoc.replace("http://", "https://");
 		writeElement(stream, "thumbnail_loc", VIDEO, videoImageLoc);
 		stream.writeEndElement();
 	}

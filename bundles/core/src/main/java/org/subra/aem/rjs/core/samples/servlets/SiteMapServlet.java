@@ -145,7 +145,7 @@ public final class SiteMapServlet extends SlingSafeMethodsServlet {
 	private static final String NS_VIDEO = "http://www.google.com/schemas/sitemap-video/1.1";
 
 	@Reference
-	private Externalizer externalizer;
+	private transient Externalizer externalizer;
 
 	private String externalizerDomain;
 

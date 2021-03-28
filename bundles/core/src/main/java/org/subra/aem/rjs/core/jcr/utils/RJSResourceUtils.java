@@ -212,7 +212,7 @@ public class RJSResourceUtils {
         return resourceResolverFactory.getServiceResourceResolver(getAuthInfo(userMapperService));
     }
 
-    public static Session getAdminSession(final SlingRepository slingRepository) throws RepositoryException, LoginException {
+    public static Session getAdminSession(final SlingRepository slingRepository) throws RepositoryException {
         return slingRepository.loginService(UserMapperService.ADMIN_SERVICE.value(), null);
     }
 

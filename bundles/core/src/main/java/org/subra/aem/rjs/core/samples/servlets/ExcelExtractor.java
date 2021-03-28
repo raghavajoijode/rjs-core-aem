@@ -100,7 +100,7 @@ public class ExcelExtractor extends org.apache.sling.api.servlets.SlingAllMethod
 		}
 
 		catch (Exception e) {
-			LOGGER.info("in exception {}", e);
+			LOGGER.info("in exception", e);
 		}
 	}
 
@@ -157,7 +157,7 @@ public class ExcelExtractor extends org.apache.sling.api.servlets.SlingAllMethod
 		}
 
 		catch (Exception e) {
-			LOGGER.error("In Exception {}", e);
+			LOGGER.error("In Exception", e);
 		}
 		LOGGER.info("Returning null");
 		return null;

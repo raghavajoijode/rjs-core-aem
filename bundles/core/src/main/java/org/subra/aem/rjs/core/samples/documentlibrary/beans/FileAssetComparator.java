@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class FileAssetComparator implements Comparator<Asset> {
 
-    private final Logger log = LoggerFactory.getLogger(Asset.class);
+    private final Logger log = LoggerFactory.getLogger(FileAssetComparator.class);
 
     public int compare(Asset file1, Asset file2) {
         // 06/14/2016 02:45 PM
