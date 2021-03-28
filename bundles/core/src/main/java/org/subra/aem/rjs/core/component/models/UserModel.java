@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.subra.aem.rjs.core.account.services.UserService;
 import org.subra.commons.dtos.account.User;
+import org.subra.commons.helpers.CommonHelper;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -32,7 +33,7 @@ public class UserModel {
     @PostConstruct
     protected void init() {
         LOGGER.trace("UserModel init..");
-        userDto = null; // CommonHelper.getCacheData(request, suid, () -> userService.getUser(suid));
+        userDto = CommonHelper.getCacheData(request, suid, () -> userService.getUser(suid));
     }
 
     public String getName() {

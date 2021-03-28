@@ -88,6 +88,11 @@ public class UserServiceImpl implements UserService {
         return user != null ? (String) response.getOrDefault("token", null) : null;
     }
 
+    @Override
+    public User getUser(String userId) {
+        return null;
+    }
+
     @ObjectClassDefinition(name = "Subra - SubraUserServiceImpl configuration", description = "SubraUserServiceImpl configuration")
     public @interface Config {
         @AttributeDefinition(name = USER_API_URL_TEMPLATE, description = "Template url for user service")

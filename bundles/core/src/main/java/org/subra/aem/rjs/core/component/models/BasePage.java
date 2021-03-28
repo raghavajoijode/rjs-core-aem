@@ -109,8 +109,7 @@ public class BasePage extends AbstractComponentModel implements ComponentExporte
 
         if (currentDesign != null) {
             String currentDesignPath = currentDesign.getPath();
-            // TODO remove this depricated usage
-            if (!Designer.DEFAULT_DESIGN_PATH.equals(currentDesignPath)) {
+            if (!"/etc/designs/default".equals(currentDesignPath)) {
                 designPath = currentDesignPath;
                 if (resourceResolver.getResource(currentDesignPath + "/static.css") != null) {
                     staticDesignPath = currentDesignPath + "/static.css";

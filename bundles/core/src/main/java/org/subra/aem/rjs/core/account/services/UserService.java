@@ -1,5 +1,7 @@
 package org.subra.aem.rjs.core.account.services;
 
+import org.subra.commons.dtos.account.User;
+
 public interface UserService {
 
 	boolean isExistingUser(String email);
@@ -7,5 +9,7 @@ public interface UserService {
 	String createUser(String email, String password, String name);
 	
 	String authenticateUser(String email, String password);
+
+	User getUser(String userId);
 
 }

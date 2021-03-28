@@ -21,12 +21,12 @@ import java.util.Optional;
 @ServiceDescription("Subra - Generic Service")
 public class SubraGenericServiceImpl implements SubraGenericService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SubraGenericServiceImpl.class);
-    private static final String ADMIN_RECIPENT_EMAIL = "raghava.joijode@gmail.com";
-    private static final String ADMIN_RECIPENT_NAME = "Admin";
-    private static final String DEFAULT_SENDER_NAME = "Subra Group";
+    // private static final String ADMIN_RECIPENT_EMAIL = "raghava.joijode@gmail.com";
+    // private static final String ADMIN_RECIPENT_NAME = "Admin";
+    // private static final String DEFAULT_SENDER_NAME = "Subra Group";
 
-    //@Reference
-    //SubraTemplatedEmailService templatedEmailService;
+    // @Reference
+    // SubraTemplatedEmailService templatedEmailService;
 
     @Reference
     RestClientService restClientService;
