@@ -56,7 +56,7 @@ public class DemoListener implements EventListener {
             session = RJSResourceUtils.getAdminSession(slingRepository);
             observationManager = session.getWorkspace().getObservationManager();
             observationManager.addEventListener(this, Event.PROPERTY_ADDED | Event.PROPERTY_CHANGED, testNode1, true, null, null, true);
-        } catch (LoginException | RepositoryException e) {
+        } catch (RepositoryException e) {
             e.printStackTrace();
         }
     }

@@ -21,6 +21,8 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.subra.aem.rjs.core.jcr.utils.RJSResourceUtils;
+import org.subra.commons.helpers.CommonHelper;
+import org.subra.commons.utils.RJSCollectionUtils;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -122,7 +124,7 @@ public class SimpleListener implements EventListener {
             if (StringUtils.isNotBlank(templatePath)) {
                 boolean isMultiChannel = templatePath.contains(IROA_TEMPLATE_SUFFIX);
                 PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-                String path = contentPath + (isMultiChannel ? "" : ("/" + channelCode));
+                String path = contentPath + (isMultiChannel ? "" : (CommonHelper.SLASH + channelCode));
                 Page page = pageManager.getPage(path);
 
                 if (page != null) {

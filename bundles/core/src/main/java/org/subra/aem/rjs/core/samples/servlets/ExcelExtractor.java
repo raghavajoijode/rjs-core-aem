@@ -186,6 +186,9 @@ public class ExcelExtractor extends org.apache.sling.api.servlets.SlingAllMethod
 					LOGGER.info("Response :success ");
 					DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 					documentBuilderFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+					documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+					documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+					documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 					DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
 					Document document = builder.parse(httpConnection.getInputStream());
 					XPathFactory xPathfactory = XPathFactory.newInstance();

@@ -26,7 +26,7 @@ import java.io.IOException;
 public class DocumentLibraryServlet extends SlingAllMethodsServlet {
 
     private static final long serialVersionUID = 1L;
-    private transient final Logger log = LoggerFactory.getLogger(getClass());
+    private final transient Logger log = LoggerFactory.getLogger(getClass());
 
     @Reference
     private transient DocumentLibraryService documentLibraryService;

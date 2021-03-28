@@ -39,25 +39,25 @@ public class SubraGenericServiceImpl implements SubraGenericService {
 
     @Override
     public void sendExceptionMessage(String className, String message) {
-        /*boolean status = templatedEmailService.email(EmailType.EXCEPTION, "[EXCEPTION] :" + className,
-                ADMIN_RECIPENT_NAME, DEFAULT_SENDER_NAME, null, Collections.singletonMap("exception", message),
-                ADMIN_RECIPENT_EMAIL)
-        if (status) {
-            LOGGER.info("Sent Email with message {}", message)
-        } else {
-            LOGGER.error("Error sending Email with message {}", message)
-        }*/
+        //boolean status = templatedEmailService.email(EmailType.EXCEPTION, "[EXCEPTION] :" + className,
+        //        ADMIN_RECIPENT_NAME, DEFAULT_SENDER_NAME, null, Collections.singletonMap("exception", message),
+          //      ADMIN_RECIPENT_EMAIL)
+        //if : status
+            //LOGGER.info("Sent Email with message {}", message)
+        //} else
+           // LOGGER.error("Error sending Email with message {}", message)
+        //}
     }
 
     @Override
     public void sendElectronicMessage(String subject, String message) {
-        /*boolean status = templatedEmailService.email(EmailType.GENERIC, subject, ADMIN_RECIPENT_NAME,
-                DEFAULT_SENDER_NAME, null, Collections.singletonMap("message", message), ADMIN_RECIPENT_EMAIL)
-        if (status) {
-            LOGGER.info("Sent Email with message {}", message)
-        } else {
-            LOGGER.error("Error sending Email with message {}", message)
-        }*/
+        //boolean status = templatedEmailService.email(EmailType.GENERIC, subject, ADMIN_RECIPENT_NAME,
+        //        DEFAULT_SENDER_NAME, null, Collections.singletonMap("message", message), ADMIN_RECIPENT_EMAIL)
+        //if status
+       //     LOGGER.info("Sent Email with message {}", message)
+       // } else
+        //    LOGGER.error("Error sending Email with message {}", message)
+        //
     }
 
     public <T> T callBackendService(final String endpointUrl, final String resource,

@@ -24,6 +24,7 @@ public class RJSEscAuthServlet extends SlingAllMethodsServlet {
      */
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LoggerFactory.getLogger(RJSEscAuthServlet.class);
+    public static final String H_3 = "</h3>";
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
@@ -31,12 +32,12 @@ public class RJSEscAuthServlet extends SlingAllMethodsServlet {
         LOGGER.info("In Do Get Request");
         response.setContentType("text/html");
 
-        String s = "<h3>" + "LDT: " + RJSDateTimeUtils.localDateTimeString() + "</h3>";
-        s = s + "<h3>" + "LDT getZonedDateTime at India: " + RJSDateTimeUtils.localDateTimeStringAtZone(RJSDateTimeUtils.ZoneIdUtil.IST.zone()) + "</h3>";
-        s = s + "<h3>" + "LDT getLocalDateTime at Tokyo: " + RJSDateTimeUtils.localDateTimeAtZone(RJSDateTimeUtils.ZoneIdUtil.JST.zone()) + "</h3>";
-        s = s + "<h3>" + "LDT getZonedDateTime at Tokyo: " + RJSDateTimeUtils.zonedDateTime(RJSDateTimeUtils.ZoneIdUtil.JST.zone()) + "</h3>";
-        s = s + "<h3>" + "LDT getLocalDateTime at UTC: " + RJSDateTimeUtils.localDateTimeAtUTC() + "</h3>";
-        s = s + "<h3>" + "LDT getZonedDateTime at UTC: " + RJSDateTimeUtils.zonedDateTimeAtUTC() + "</h3>";
+        String s = "<h3>" + "LDT: " + RJSDateTimeUtils.localDateTimeString() + H_3;
+        s = s + "<h3>" + "LDT getZonedDateTime at India: " + RJSDateTimeUtils.localDateTimeStringAtZone(RJSDateTimeUtils.ZoneIdUtil.IST.zone()) + H_3;
+        s = s + "<h3>" + "LDT getLocalDateTime at Tokyo: " + RJSDateTimeUtils.localDateTimeAtZone(RJSDateTimeUtils.ZoneIdUtil.JST.zone()) + H_3;
+        s = s + "<h3>" + "LDT getZonedDateTime at Tokyo: " + RJSDateTimeUtils.zonedDateTime(RJSDateTimeUtils.ZoneIdUtil.JST.zone()) + H_3;
+        s = s + "<h3>" + "LDT getLocalDateTime at UTC: " + RJSDateTimeUtils.localDateTimeAtUTC() + H_3;
+        s = s + "<h3>" + "LDT getZonedDateTime at UTC: " + RJSDateTimeUtils.zonedDateTimeAtUTC() + H_3;
 
         response.getWriter().write(s);
     }

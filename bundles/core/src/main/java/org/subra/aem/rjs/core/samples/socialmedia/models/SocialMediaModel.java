@@ -55,10 +55,10 @@ public class SocialMediaModel {
 
 	@PostConstruct
 	public void init() {
-		this.oAuthConsumerKey = socailMediaService.getOAuthConsumerKey();
-		this.oAuthConsumerSecret = socailMediaService.getOAuthConsumerSecret();
-		this.oAuthAccessToken = socailMediaService.getOAuthAccessToken();
-		this.oAuthaccessTokenSecret = socailMediaService.getOAuthaccessTokenSecret();
+		// this.oAuthConsumerKey = socailMediaService.getOAuthConsumerKey()
+		// this.oAuthConsumerSecret = socailMediaService.getOAuthConsumerSecret()
+		// this.oAuthAccessToken = socailMediaService.getOAuthAccessToken()
+		// this.oAuthaccessTokenSecret = socailMediaService.getOAuthaccessTokenSecret()
 		this.fbCompanyID = socailMediaService.getFBCompanyID();
 		this.fbOAuthAccessToken = socailMediaService.getFBOAuthAccessToken();
 		this.youtubeChannelName = socailMediaService.getYoutubeChannelName();
@@ -84,19 +84,18 @@ public class SocialMediaModel {
 		LOGGER.debug("End of to Twitter");
 	}
 
-	/* public List<Status> getUserTimeLineTwitter() throws TwitterException {
-		List<Status> statusText = new ArrayList<>();
-		LOGGER.debug("In twitter method");
-		List<Status> twits = twitter.getUserTimeline();
-		LOGGER.debug("In twitter method twoo");
-		for (int i = 0; i < noOfStatus; i++) {
-			statusText.add(twits.get(i));
-			LOGGER.debug("In twitter method:: {}", i);
-		}
-		LOGGER.debug(" Status Text {}", statusText);
-
-		return statusText;
-	} */
+	// public List<Status> getUserTimeLineTwitter() throws TwitterException {
+	//	List<Status> statusText = new ArrayList<>()
+	//	LOGGER.debug("In twitter method")
+	//	List<Status> twits = twitter.getUserTimeline()
+	//	LOGGER.debug("In twitter method twoo")
+	//	for :int i = 0; i < noOfStatus; i++
+	//		statusText.add(twits.get(i))
+	//		LOGGER.debug("In twitter method:: {}", i)
+	//
+	//	LOGGER.debug(" Status Text {}", statusText)
+	// 	return statusText
+	//
 
 	public String getYoutubeChannelName() {
 
