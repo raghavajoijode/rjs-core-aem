@@ -5,6 +5,7 @@ import com.day.cq.replication.Replicator;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.Template;
+import com.day.cq.wcm.api.WCMException;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -22,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.subra.aem.rjs.core.jcr.utils.RJSResourceUtils;
 import org.subra.commons.helpers.CommonHelper;
-import org.subra.commons.utils.RJSCollectionUtils;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -127,21 +127,8 @@ public class SimpleListener implements EventListener {
                 String path = contentPath + (isMultiChannel ? "" : (CommonHelper.SLASH + channelCode));
                 Page page = pageManager.getPage(path);
 
-                if (page != null) {
-                    Template template = page.getTemplate();
-                    if (template == null) {
-                        LOGGER.error("no template found for '{}'.", path);
-                        return;
-                    }
-                    String oldTemplatePath = template.getPath();
-                    if (!templatePath.equalsIgnoreCase(oldTemplatePath)) {
-                        LOGGER.error("wrong template found! '{}' instead of expected '{}'.", oldTemplatePath, templatePath);
-                        return;
-                    }
-                } else {
-                    LOGGER.debug("Create a new page under: {} with channelCode: {}", contentPath, channelCode);
-                    page = pageManager.create(contentPath, channelCode, templatePath, channelCode);
-                }
+                page = validateOrCreatePage(channelCode, contentPath, templatePath, pageManager, path, page);
+                if (page == null) return;
                 RJSResourceUtils.addOrUpdateProperty(page.getContentResource(), "prodNumber" + (isMultiChannel ? '-' + channelCode : ""), productNumber);
                 replicator.replicate(resourceResolver.adaptTo(Session.class), ReplicationActionType.ACTIVATE, path);
                 LOGGER.debug("Set product number of '{}' to {}.", path, productNumber);
@@ -151,6 +138,25 @@ public class SimpleListener implements EventListener {
         } catch (Exception e) {
             LOGGER.error("Failed to create page", e);
         }
+    }
+
+    private Page validateOrCreatePage(String channelCode, String contentPath, String templatePath, PageManager pageManager, String path, Page page) throws WCMException {
+        if (page != null) {
+            Template template = page.getTemplate();
+            if (template == null) {
+                LOGGER.error("no template found for '{}'.", path);
+                return null;
+            }
+            String oldTemplatePath = template.getPath();
+            if (!templatePath.equalsIgnoreCase(oldTemplatePath)) {
+                LOGGER.error("wrong template found! '{}' instead of expected '{}'.", oldTemplatePath, templatePath);
+                return null;
+            }
+        } else {
+            LOGGER.debug("Create a new page under: {} with channelCode: {}", contentPath, channelCode);
+            page = pageManager.create(contentPath, channelCode, templatePath, channelCode);
+        }
+        return page;
     }
 
     @ObjectClassDefinition(name = "Demo Sample Event Listner Event Listiner", description = "Service for ehcache configuration")

@@ -50,7 +50,7 @@ public class SocialMediaModel {
 	private String youtubeKey;
 	
 	@Inject @Default(intValues = 5)
-	private int NoOfStatus;
+	private int noOfStatus;
 
 
 	@PostConstruct

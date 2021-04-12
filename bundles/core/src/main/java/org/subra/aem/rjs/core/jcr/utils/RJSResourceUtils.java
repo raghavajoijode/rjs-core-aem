@@ -96,7 +96,7 @@ public class RJSResourceUtils {
             }
             return null;
         }).orElseGet(() -> {
-            throw new RJSRuntimeException(); // TODO: Use orElseThrow()
+            throw new RJSRuntimeException();
         });
     }
 
@@ -106,7 +106,7 @@ public class RJSResourceUtils {
 
     public static <K extends Adaptable, T> T adoptToOrThrow(final K adaptableClazz, final Class<T> adaptorClazz) {
         return adaptTo(adaptableClazz, adaptorClazz).orElseGet(() -> {
-            throw new RJSRuntimeException(); // TODO: Use orElseThrow()
+            throw new RJSRuntimeException();
         });
     }
 

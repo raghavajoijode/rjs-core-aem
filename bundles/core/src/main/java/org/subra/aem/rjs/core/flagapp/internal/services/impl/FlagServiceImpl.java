@@ -147,7 +147,6 @@ public class FlagServiceImpl implements FlagService {
         final String name = project.getProjectName();
         try {
             Optional<Resource> a = Optional.of(rootNode).map(r -> r.getChild(name));
-            // TODO ifPresentOrElse
             if (a.isPresent()) {
                 Resource p = a.get();
                 if (p.getChild(JcrFileNames.CONFIG_NODE.value()) == null)
@@ -173,7 +172,6 @@ public class FlagServiceImpl implements FlagService {
         Project projectVo = new Project();
         Optional<Resource> a = Optional.ofNullable(rootNode).map(r -> r.getChild(name))
                 .map(p -> p.getChild(JcrFileNames.CONFIG_NODE.value()));
-        // TODO ifPresentOrElse
         if (a.isPresent()) {
             Resource c = a.get();
             setProjectVo(c.getParent(), projectVo);
@@ -188,7 +186,6 @@ public class FlagServiceImpl implements FlagService {
         Optional<Resource> a = Optional.ofNullable(rootNode).map(r -> r.getChild(name))
                 .map(p -> p.getChild(JcrFileNames.CONFIG_NODE.value()));
 
-        // TODO ifPresentOrElse
         if (a.isPresent()) {
             Resource c = a.get();
             try {
@@ -209,7 +206,6 @@ public class FlagServiceImpl implements FlagService {
             Optional<Iterator<Resource>> a = Optional.ofNullable(rootNode).map(r -> RJSResourceUtils.getChildResource(r, projectName))
                     .map(p -> RJSResourceUtils.getChildResource(p, JcrFileNames.CONFIG_NODE.value()))
                     .map(Resource::listChildren);
-            // TODO ifPresentOrElse
             if (a.isPresent()) {
                 Iterator<Resource> itr = a.get();
                 while (itr.hasNext()) {

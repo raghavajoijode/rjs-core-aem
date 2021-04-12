@@ -35,8 +35,7 @@ public class MongoDBUtils {
         }
     }
 
-    public static MongoClient createConnection(String host, int port, String username, String password)
-            throws RJSCustomException, UnsupportedEncodingException {
+    public static MongoClient createConnection(String host, int port, String username, String password) throws RJSCustomException, UnsupportedEncodingException {
         final String url = createMongoURL(host, port, username, password);
         if (StringUtils.isEmpty(url)) {
             LOGGER.debug("Connecting to Mongo DB Server with URL:- {}", url);
@@ -61,8 +60,7 @@ public class MongoDBUtils {
         }
     }
 
-    public static MongoCollection<Document> getMongoCollection(final MongoDatabase db, final String collectionName)
-            throws RJSCustomException {
+    public static MongoCollection<Document> getMongoCollection(final MongoDatabase db, final String collectionName) throws RJSCustomException {
         if (db != null) {
             LOGGER.debug("Getting collection '{}' from '{}' ", collectionName, db.getName());
             return db.getCollection(collectionName);
@@ -71,15 +69,9 @@ public class MongoDBUtils {
         }
     }
 
-    public static MongoCollection<Document> getMongoCollection(final MongoClient client, final String dbName,
-                                                               final String collectionName) throws RJSCustomException {
-        MongoDatabase db = getMongoDB(client, dbName);
-        if (db != null) {
-            LOGGER.debug("Getting collection '{}' from '{}' ", collectionName, db.getName());
-            return db.getCollection(collectionName);
-        } else {
-            throw new RJSCustomException("Received invalid MongoDatabase, Error Getting Collection...");
-        }
+    public static MongoCollection<Document> getMongoCollection(final MongoClient client, final String dbName, final String collectionName) throws RJSCustomException {
+        LOGGER.debug("Getting collection '{}' from '{}' ", collectionName, dbName);
+        return getMongoDB(client, dbName).getCollection(collectionName);
     }
 
     public static String createMongoURL(String host, int port, String username, String password) throws UnsupportedEncodingException {

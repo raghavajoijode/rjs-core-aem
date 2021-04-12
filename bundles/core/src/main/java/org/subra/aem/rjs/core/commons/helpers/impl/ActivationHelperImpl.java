@@ -32,7 +32,8 @@ public class ActivationHelperImpl implements ActivationHelper {
             RJSInstanceUtils.configure(slingSettings);
             RJSI18NUtils.configure(resourceBundleProvider);
         } catch (ConfigurationException e) {
-            // TODO sendExceptionMessage(getClass().getSimpleName(), e.getMessage())
+            // Sends an email in case of exceptions to analyse and handle
+            // sendExceptionMessage(getClass().getSimpleName(), e.getMessage())
             LOGGER.error("ConfigurationException occurred");
         }
     }

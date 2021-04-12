@@ -149,7 +149,7 @@ public final class TemplateServiceImpl implements TemplateService {
     @Override
     public String readTemplate(final Template template) {
         return Optional.ofNullable(template).map(Template::getMessage).orElseGet(() -> {
-            throw new RJSRuntimeException(); // TODO orElseThrow
+            throw new RJSRuntimeException();
         });
     }
 

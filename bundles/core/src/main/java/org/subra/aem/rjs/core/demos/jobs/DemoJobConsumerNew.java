@@ -34,7 +34,7 @@ public class DemoJobConsumerNew implements JobConsumer {
         try {
             log.info("Processing the DemoJobConsumerNew *******");
             log.info("NEW:: Job {}", myParameter);
-            // TODO : Write your business logic here . Any properties you need to execute
+            // Business logic goes here
             return JobResult.OK;
         } catch (Exception e) {
             log.error("Exception is ", e);

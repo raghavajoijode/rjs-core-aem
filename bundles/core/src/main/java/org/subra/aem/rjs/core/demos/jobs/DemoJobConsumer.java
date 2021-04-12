@@ -43,7 +43,7 @@ public class DemoJobConsumer implements JobConsumer {
             log.info("Processing the JOB ******* DemoJobConsumer");
             final String message = String.format("The resource %s was %s", String.valueOf(job.getProperty("path")), job.getProperty("type"));
             log.info(message);
-            // TODO : Write your business logic here . Any properties you need to execute
+            // Business logic goes here
             if (BooleanUtils.toBoolean((String) job.getProperty("sendEmail"))) {
                 log.info("Sending email...");
                 Map<String, Object> response = senEmail(message);
