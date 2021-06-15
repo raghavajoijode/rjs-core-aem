@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/css/main.2a17b812.chunk.css",
-    "main.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/main.ceb8e3ef.chunk.js",
-    "main.js.map": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/main.ceb8e3ef.chunk.js.map",
+    "main.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/main.767f2579.chunk.js",
+    "main.js.map": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/main.767f2579.chunk.js.map",
     "runtime-main.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/runtime-main.5532f4d6.js",
     "runtime-main.js.map": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/runtime-main.5532f4d6.js.map",
-    "static/js/2.2060571e.chunk.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/2.2060571e.chunk.js",
-    "static/js/2.2060571e.chunk.js.map": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/2.2060571e.chunk.js.map",
+    "static/js/2.b392b3c8.chunk.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/2.b392b3c8.chunk.js",
+    "static/js/2.b392b3c8.chunk.js.map": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/2.b392b3c8.chunk.js.map",
     "index.html": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/index.html",
-    "precache-manifest.59f4c18251fc08a01a5cb7dc41faed80.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/precache-manifest.59f4c18251fc08a01a5cb7dc41faed80.js",
+    "precache-manifest.97b3fcb0e44d3e30a29dde9691761211.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/precache-manifest.97b3fcb0e44d3e30a29dde9691761211.js",
     "service-worker.js": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/service-worker.js",
     "static/css/main.2a17b812.chunk.css.map": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/css/main.2a17b812.chunk.css.map",
-    "static/js/2.2060571e.chunk.js.LICENSE.txt": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/2.2060571e.chunk.js.LICENSE.txt"
+    "static/js/2.b392b3c8.chunk.js.LICENSE.txt": "/etc.clientlibs/rjs-core/clientlibs/clientlib-react/resources/static/js/2.b392b3c8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5532f4d6.js",
-    "static/js/2.2060571e.chunk.js",
+    "static/js/2.b392b3c8.chunk.js",
     "static/css/main.2a17b812.chunk.css",
-    "static/js/main.ceb8e3ef.chunk.js"
+    "static/js/main.767f2579.chunk.js"
   ]
 }

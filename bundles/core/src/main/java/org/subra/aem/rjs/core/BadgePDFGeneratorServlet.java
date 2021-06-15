@@ -1,5 +1,6 @@
 package org.subra.aem.rjs.core;
 
+import org.apache.commons.httpclient.HttpMethod;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -20,7 +21,7 @@ import java.net.URLDecoder;
 @SuppressWarnings("serial")
 
 @Component(service = { Servlet.class })
-@SlingServletPaths(value ="/bin/rj/testpdf")
+@SlingServletResourceTypes(resourceTypes ="test/rj/testpdf" , methods = HttpConstants.METHOD_POST)
 @ServiceDescription("Simple Demo Servlet")
 
 public class BadgePDFGeneratorServlet extends SlingAllMethodsServlet {
