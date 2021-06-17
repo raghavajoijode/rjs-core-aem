@@ -11,12 +11,10 @@ import com.itextpdf.kernel.pdf.PdfDocumentInfo;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.WriterProperties;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.font.FontProvider;
-import com.itextpdf.layout.font.FontSet;
 import org.apache.commons.io.IOUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.subra.aem.rjs.core.BadgePDFGeneratorServlet;
+import org.subra.aem.rjs.core.pdf.servlets.BadgePDFGeneratorServlet;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -47,9 +45,9 @@ public class BadgeGenerator {
 
 		//Set meta tags
 		PdfDocumentInfo pdfMetaData = pdfDoc.getDocumentInfo();
-		pdfMetaData.setAuthor("Girlscouts America");
+		pdfMetaData.setAuthor("Random Author");
 		pdfMetaData.addCreationDate();
-		pdfMetaData.setKeywords("Girlscouts badges");
+		pdfMetaData.setKeywords("Test PDF");
 		pdfMetaData.setSubject("Badge Explorer");
 		pdfMetaData.setTitle("Badge Explorer");
 
@@ -57,7 +55,7 @@ public class BadgeGenerator {
 		ConverterProperties props = new ConverterProperties();
 
 		// Setup custom tagworker factory for pulling images straight from the DAM.
-		ITagWorkerFactory tagWorkerFactory = new GSTagWorkerFactory();
+		ITagWorkerFactory tagWorkerFactory = new TagWorkerFactory();
 
 		ResourceResolver resourceResolver = BadgePDFGeneratorServlet.resolverLocal.get();
 

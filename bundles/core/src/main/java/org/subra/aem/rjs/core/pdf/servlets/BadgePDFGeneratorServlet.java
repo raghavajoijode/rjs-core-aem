@@ -1,4 +1,4 @@
-package org.subra.aem.rjs.core;
+package org.subra.aem.rjs.core.pdf.servlets;
 
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.sling.api.SlingHttpServletRequest;

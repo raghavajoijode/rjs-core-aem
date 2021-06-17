@@ -10,9 +10,9 @@ import com.itextpdf.layout.renderer.AreaBreakRenderer;
 import com.itextpdf.layout.renderer.DrawContext;
 import com.itextpdf.layout.renderer.IRenderer;
 
-public class GSNewPageTagWorker implements ITagWorker {
+public class NewPageTagWorker implements ITagWorker {
 
-	public GSNewPageTagWorker(IElementNode element, ProcessorContext context) { }
+	public NewPageTagWorker(IElementNode element, ProcessorContext context) { }
 
 	@Override
 	public IPropertyContainer getElementResult() {

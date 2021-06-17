@@ -1,6 +1,5 @@
 package org.subra.aem.rjs.core.pdf;
 
-import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.Rendition;
 import com.day.cq.dam.commons.util.DamUtil;
 import com.itextpdf.html2pdf.attach.ITagWorker;
@@ -13,11 +12,10 @@ import com.itextpdf.kernel.pdf.xobject.PdfImageXObject;
 import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.element.Image;
 import org.apache.commons.io.IOUtils;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.subra.aem.rjs.core.BadgePDFGeneratorServlet;
+import org.subra.aem.rjs.core.pdf.servlets.BadgePDFGeneratorServlet;
 
 import java.io.IOException;
 import java.util.Optional;
