@@ -48,36 +48,36 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
         resp.setContentType("text/html");
         String text = req.getParameter("text");
         String test = "<p>Sample text line<sup data-val=\"a\" class=\"dis\">a</sup> 1 end</p> <p>Sample text line<sup data-val=\"b\" class=\"dis\">b</sup><sup data-val=\"a\" class=\"dis\">a</sup><sup data-val=\"d\" class=\"dis\">d</sup><sup  data-val=\"c\" class=\"dis\">c</sup> 2 end</p><p>Sample text line<sup  data-val=\"c\" class=\"dis\">c</sup> 3 end</p>";
-        Document doc = Jsoup.parseBodyFragment(StringUtils.defaultIfBlank(text, test));
+        Document document = Jsoup.parseBodyFragment(StringUtils.defaultIfBlank(text, test));
         String key = req.getParameter("key");
         if (StringUtils.equalsIgnoreCase(key, "text")) {
-            resp.getWriter().write(doc.toString());
+            resp.getWriter().write(document.toString());
         } else {
-            sortSuperScripts(doc);
-            resp.getWriter().write(doc.toString());
+            sortSuperScripts(document);
+            resp.getWriter().write(document.toString());
         }
     }
 
-    private void sortSuperScripts(Document doc) {
-        doc.select(SUPERSCRIPTS).forEach(el -> {
+    private void sortSuperScripts(Document document) {
+        document.select(SUPERSCRIPTS).forEach(el -> {
             if (hasAdjacentElement(el)) {
                 el.html(sortedSiblingsMarkUp(el));
                 el.siblingElements().remove();
                 el.addClass(SUPERSCRIPTS_WRAPPER);
-                el.children().forEach(ele -> {
-                    if (hasAdjacentElement(ele))
-                        ele.append(",");
+                el.children().forEach(sortedElements -> {
+                    if (hasAdjacentElement(sortedElements))
+                        sortedElements.append(",");
                 });
             }
         });
-        doc.select("." + SUPERSCRIPTS_WRAPPER).forEach(Element::unwrap);
+        document.select("." + SUPERSCRIPTS_WRAPPER).forEach(Element::unwrap);
     }
 
     private String sortedSiblingsMarkUp(Element el) {
         Elements siblings = el.siblingElements();
         siblings.add(el);
         siblings.sort(Comparator.comparing(Element::ownText));
-        return StringUtils.normalizeSpace(siblings.outerHtml()).replace("> <", "><");
+        return StringUtils.replace(StringUtils.normalizeSpace(siblings.outerHtml()), "> <", "><");
     }
 
     private boolean hasAdjacentElement(Element element) {
