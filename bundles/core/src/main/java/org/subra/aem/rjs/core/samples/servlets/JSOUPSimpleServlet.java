@@ -46,8 +46,9 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
     protected void doGet(final SlingHttpServletRequest req,
                          final SlingHttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
+        String text = req.getParameter("text");
         String test = "<p>Sample text line<sup data-val=\"a\" class=\"dis\">a</sup> 1 end</p> <p>Sample text line<sup data-val=\"b\" class=\"dis\">b</sup><sup data-val=\"a\" class=\"dis\">a</sup><sup data-val=\"d\" class=\"dis\">d</sup><sup  data-val=\"c\" class=\"dis\">c</sup> 2 end</p><p>Sample text line<sup  data-val=\"c\" class=\"dis\">c</sup> 3 end</p>";
-        Document doc = Jsoup.parseBodyFragment(test);
+        Document doc = Jsoup.parseBodyFragment(StringUtils.defaultIfBlank(text, test));
         String key = req.getParameter("key");
         if (StringUtils.equalsIgnoreCase(key, "text")) {
             resp.getWriter().write(doc.toString());
