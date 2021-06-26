@@ -1,5 +1,6 @@
 package org.subra.aem.rjs.core.samples.servlets;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -8,6 +9,7 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
@@ -15,6 +17,7 @@ import org.osgi.service.component.propertytypes.ServiceDescription;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.Comparator;
 
 /**
  * Servlet that writes some sample content into the response. It is mounted for
@@ -35,23 +38,50 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 1L;
 
+    private static final String SUPERSCRIPTS = "sup.dis";
+    private static final String SUPERSCRIPTS_WRAPPER = "sup-wrapper";
+
+
     @Override
     protected void doGet(final SlingHttpServletRequest req,
                          final SlingHttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/plain");
-        String test = "<div><p>Raghava test <sup class=\"rag zero\">a</sup></p><p>other text <sup class=\"rag first\">b</sup><sup class=\"rag second\">a</sup></p></div>";
+        resp.setContentType("text/html");
+        String test = "<p>Sample text line<sup data-val=\"a\" class=\"dis\">a</sup> 1 end</p> <p>Sample text line<sup data-val=\"b\" class=\"dis\">b</sup><sup data-val=\"a\" class=\"dis\">a</sup><sup data-val=\"d\" class=\"dis\">d</sup><sup  data-val=\"c\" class=\"dis\">c</sup> 2 end</p><p>Sample text line<sup  data-val=\"c\" class=\"dis\">c</sup> 3 end</p>";
         Document doc = Jsoup.parseBodyFragment(test);
-        doc.select("sup.rag").stream().filter(e -> {
-            if (e.nextElementSibling() != null && e.nextElementSibling().hasClass("rag")) {
-                return true;
-            }
-            return false;
-        }).forEach(el -> {
-            Element nextEl = el.nextElementSibling();
-            //el.empty();
-            el.append(nextEl.outerHtml());
-           // el.append(currentEL.outerHtml());
-        });
-        resp.getWriter().write("Title = " + doc.html().toLowerCase());
+        String key = req.getParameter("key");
+        if (StringUtils.equalsIgnoreCase(key, "text")) {
+            resp.getWriter().write(doc.toString());
+        } else {
+            sortSuperScripts(doc);
+            resp.getWriter().write(doc.toString());
+        }
     }
+
+    private void sortSuperScripts(Document doc) {
+        doc.select(SUPERSCRIPTS).forEach(el -> {
+            if (hasAdjacentElement(el)) {
+                el.html(sortedSiblingsMarkUp(el));
+                el.siblingElements().remove();
+                el.addClass(SUPERSCRIPTS_WRAPPER);
+                el.children().forEach(ele -> {
+                    if (hasAdjacentElement(ele))
+                        ele.append(",");
+                });
+            }
+        });
+        doc.select("." + SUPERSCRIPTS_WRAPPER).forEach(Element::unwrap);
+    }
+
+    private String sortedSiblingsMarkUp(Element el) {
+        Elements siblings = el.siblingElements();
+        siblings.add(el);
+        siblings.sort(Comparator.comparing(Element::ownText));
+        return StringUtils.normalizeSpace(siblings.outerHtml()).replace("> <", "><");
+    }
+
+    private boolean hasAdjacentElement(Element element) {
+        Element nextElement = element.nextElementSibling();
+        return nextElement != null && nextElement.is(SUPERSCRIPTS);
+    }
+
 }
