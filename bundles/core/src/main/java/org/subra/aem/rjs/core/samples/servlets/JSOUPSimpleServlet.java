@@ -8,6 +8,8 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
@@ -43,11 +45,11 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
         document.select(SUPERSCRIPTS).forEach(el -> {
             if (hasAdjacentElement(el)) {
                 el.html(sortedSiblingsMarkUp(el));
-                el.siblingElements().remove();
+                el.nextElementSiblings().remove();
                 el.addClass(SUPERSCRIPTS_WRAPPER);
-                el.children().forEach(sortedElements -> {
-                    if (hasAdjacentElement(sortedElements))
-                        sortedElements.append(",");
+                el.children().forEach(sortedElement -> {
+                    if (sortedElement.nextSibling() instanceof TextNode || hasAdjacentElement(sortedElement))
+                        sortedElement.append(",");
                 });
             }
         });
@@ -55,15 +57,15 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
     }
 
     private String sortedSiblingsMarkUp(Element el) {
-        Elements siblings = el.siblingElements();
+        Elements siblings = el.nextElementSiblings();
         siblings.add(el);
         siblings.sort(Comparator.comparing(Element::ownText));
-        return StringUtils.replace(StringUtils.normalizeSpace(siblings.outerHtml()), "> <", "><");
+        return StringUtils.normalizeSpace(siblings.outerHtml());
     }
 
     private boolean hasAdjacentElement(Element element) {
-        Element nextElement = element.nextElementSibling();
-        return nextElement != null && nextElement.is(SUPERSCRIPTS);
+        Node nextSibling = element.nextSibling();
+        return nextSibling != null && nextSibling.attr("class").equalsIgnoreCase(element.className());
     }
 
 }
