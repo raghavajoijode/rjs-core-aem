@@ -32,7 +32,7 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         String text = request.getParameter("text");
-        String test = "<p>Sample text line<sup data-val=\"a\" class=\"dis\">a</sup> 1 end</p> <p>Sample text line<sup data-val=\"b\" class=\"dis\">b</sup><sup data-val=\"a\" class=\"dis\">a</sup><sup data-val=\"d\" class=\"dis\">d</sup><sup  data-val=\"c\" class=\"dis\">c</sup> 2 end</p><p>Sample text line<sup  data-val=\"c\" class=\"dis\">c</sup> 3 end</p>";
+        String test = "<p>Sample<sup  data-val=\"c\" class=\"dis\">6</sup> text line<sup  data-val=\"c\" class=\"dis\">4</sup><sup  data-val=\"c\" class=\"dis\">2</sup> 3 end</p><p>Sample text line<sup data-val=\"a\" class=\"dis\">a</sup> 1 end</p> <p>Sample text line<sup data-val=\"b\" class=\"dis\">b</sup><sup data-val=\"a\" class=\"dis\">2</sup><sup data-val=\"d\" class=\"dis\">d</sup><sup  data-val=\"c\" class=\"dis\">c</sup> 2 end</p><p>Sample<sup  data-val=\"c\" class=\"dis\">6</sup> text line<sup  data-val=\"c\" class=\"dis\">4</sup><sup  data-val=\"c\" class=\"dis\">2</sup> 3 end</p>";
         Document document = Jsoup.parseBodyFragment(StringUtils.defaultIfBlank(text, test));
         String key = request.getParameter("key");
         if (!StringUtils.equalsIgnoreCase(key, "text")) {
