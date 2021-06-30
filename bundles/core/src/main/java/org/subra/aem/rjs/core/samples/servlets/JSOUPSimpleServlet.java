@@ -43,12 +43,17 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
 
     private void sortSuperScripts(Document document) {
         document.select(SUPERSCRIPTS).forEach(el -> {
-            if (hasAdjacentElement(el)) {
+            if (hasNextAdjacentElement(el)) {
                 el.html(sortedSiblingsMarkUp(el));
-                el.nextElementSiblings().remove();
+                for (Element nextElement : el.nextElementSiblings()) {
+                    if (hasPrevAdjacentElement(nextElement))
+                        nextElement.remove();
+                    else
+                        break;
+                }
                 el.addClass(SUPERSCRIPTS_WRAPPER);
                 el.children().forEach(sortedElement -> {
-                    if (sortedElement.nextSibling() instanceof TextNode || hasAdjacentElement(sortedElement))
+                    if (sortedElement.nextSibling() instanceof TextNode || hasNextAdjacentElement(sortedElement))
                         sortedElement.append(",");
                 });
             }
@@ -57,15 +62,25 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
     }
 
     private String sortedSiblingsMarkUp(Element el) {
-        Elements siblings = el.nextElementSiblings();
-        siblings.add(el);
-        siblings.sort(Comparator.comparing(Element::ownText));
-        return StringUtils.normalizeSpace(siblings.outerHtml());
+        Elements validSiblings = new Elements();
+        validSiblings.add(el);
+        for (Element e : el.nextElementSiblings()) {
+            validSiblings.add(e);
+            if (!hasNextAdjacentElement(e))
+                break;
+        }
+        validSiblings.sort(Comparator.comparing(Element::ownText));
+        return StringUtils.normalizeSpace(validSiblings.outerHtml());
     }
 
-    private boolean hasAdjacentElement(Element element) {
+    private boolean hasNextAdjacentElement(Element element) {
         Node nextSibling = element.nextSibling();
         return nextSibling != null && nextSibling.attr("class").equalsIgnoreCase(element.className());
+    }
+
+    private boolean hasPrevAdjacentElement(Element element) {
+        Node prevSibling = element.previousSibling();
+        return prevSibling != null && prevSibling.attr("class").equalsIgnoreCase(element.className());
     }
 
 }
