@@ -45,7 +45,7 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
         document.select(SUPERSCRIPTS).forEach(el -> {
             if (hasNextAdjacentElement(el)) {
                 el.html(sortedSiblingsMarkUp(el));
-                for (Element nextElement : el.nextElementSiblings()) {
+                for (Element nextElement : nextElementSiblings(true, el)) { // el.nextElementSiblings()
                     if (hasPrevAdjacentElement(nextElement))
                         nextElement.remove();
                     else
@@ -64,7 +64,7 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
     private String sortedSiblingsMarkUp(Element el) {
         Elements validSiblings = new Elements();
         validSiblings.add(el);
-        for (Element e : el.nextElementSiblings()) {
+        for (Element e : nextElementSiblings(true, el)) {
             validSiblings.add(e);
             if (!hasNextAdjacentElement(e))
                 break;
@@ -81,6 +81,17 @@ public class JSOUPSimpleServlet extends SlingSafeMethodsServlet {
     private boolean hasPrevAdjacentElement(Element element) {
         Node prevSibling = element.previousSibling();
         return prevSibling != null && prevSibling.attr("class").equalsIgnoreCase(element.className());
+    }
+
+    // Custom way of el.nextElementSiblings() el.previousElementSiblings()
+    private Elements nextElementSiblings(boolean next, Element element) {
+        Elements els = new Elements();
+        if (element.parentNode() == null) {
+            return els;
+        } else {
+            els.add(element);
+            return next ? els.nextAll() : els.prevAll();
+        }
     }
 
 }
