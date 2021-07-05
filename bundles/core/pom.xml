@@ -36,8 +36,8 @@
                         </goals>
                         <configuration>
                             <bnd><![CDATA[
-Import-Package: !org.bouncycastle.*,!com.itextpdf.license,!sun.misc,javax.annotation;version=0.0.0,*
-Private-Package: com.itextpdf.*
+Import-Package: !org.bouncycastle.*,!sun.misc,javax.annotation;version=0.0.0,*
+Conditional-Package: com.itextpdf.*
                                 ]]></bnd>
                         </configuration>
                     </execution>
